@@ -55,7 +55,6 @@ Directories are created on first use.
 1. Check if content fits an existing MOC scope
 2. If not, create `docs/<project-name>/` + `<project-name>-moc.md`
 3. Add it to `docs/index.md`
-4. Add it to the Knowledge Graph in `AGENTS.md`
 
 ## MOCs
 

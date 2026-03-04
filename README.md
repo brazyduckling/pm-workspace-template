@@ -131,7 +131,6 @@ When you start working on something new:
 1. Create `docs/<project-name>/` folder
 2. Create `docs/<project-name>/<project-name>-moc.md` (the project's index)
 3. Add a link in `docs/index.md` under Project Areas
-4. Add an entry to the Knowledge Graph table in `AGENTS.md`
 
 Meeting notes go to `docs/<project-name>/meeting-notes/`. PRDs go to `prds/`. Decisions to `decisions/`.
 

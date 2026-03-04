@@ -54,26 +54,15 @@
 | Raw unprocessed input | `inbox/` |
 | Cross-project / org context | `docs/general/` |
 
-## Knowledge Graph
+## Navigation
 
-### Entry Points
+Start at `docs/index.md` — it links to all project MOCs and ops files.
 
-| Area | MOC file | Contains |
-|---|---|---|
-| **Hub** | `docs/index.md` | Top-level navigation |
-| General | `docs/general/general-moc.md` | Personal + org context |
-| Operations | `ops/tasks.md` | Active work and reminders |
-
-<!-- Add new projects here:
-| Project Name | `docs/<project>/<project>-moc.md` | Brief description |
--->
-
-### Adding New Entry Points
+### Adding a New Project
 
 1. Create `docs/<project-name>/` and `<project-name>-moc.md`
 2. Add the MOC to `docs/index.md`
-3. Add the project to the Knowledge Graph table in this file
-4. Route docs by type (`meeting-notes/`, `decisions/`, `prds/`)
+3. Route docs by type (`meeting-notes/`, `decisions/`, `prds/`)
 
 ## Conventions
 

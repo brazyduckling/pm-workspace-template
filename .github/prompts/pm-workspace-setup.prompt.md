@@ -31,16 +31,15 @@ When user provides notes:
    - Ask: "Want me to create this MOC?"
 6. If action items exist, show proposed task additions to `ops/tasks.md`.
    - Ask: "Add these tasks?"
-7. Show proposed index updates:
+7. Show proposed index update:
    - New project link in `docs/index.md`
-   - New Knowledge Graph row in `AGENTS.md`
-   - Ask: "Add these entries?"
+   - Ask: "Add this to the hub?"
 8. Summarize the full pipeline in plain language:
    - raw notes → structured doc
    - routed to project folder
    - indexed in MOC
    - tasks captured
-   - project registered in hub + Knowledge Graph
+   - project registered in the hub index
 
 ## Phase 2 — PRD Flow (Explain Briefly)
 

@@ -14,7 +14,7 @@ Start by saying:
 >
 > No more re-explaining your projects. No more pasting context into every chat. It's just there, every time.
 >
-> One thing worth knowing: **everything stays local.** These are just markdown files on your machine. Nothing gets sent anywhere, nothing is stored in the cloud. It's yours.
+> One thing: **everything stays local.** These are markdown files on your machine. I read them during our conversations — nothing gets sent to a server, nothing gets stored outside this folder.
 >
 > We're going to set it up right now, live, with real content. Ten minutes. Let's go.
 
@@ -22,21 +22,18 @@ Start by saying:
 
 Say:
 
-> "Here's what we're doing: I'm going to take a meeting transcript, pull out the decisions, action items, and open questions, then save it as a structured note in the right folder, add it to the project index, and drop any tasks into your task list. All confirmed step by step before anything gets written."
->
-> "Ready? You've got two options:"
->
-> **A — Use the example transcript.** There's a stakeholder meeting already in the repo at `examples/example-meeting-transcript.md`. Use this if you just want to watch it work.
->
-> **B — Use your own notes.** Paste anything — rough, bullet points, whatever.
->
-> Which one?
+> "We're going to take a meeting transcript and turn it into structured output: decisions, action items, open questions. Then I'll save it as a dated note inside a project folder, create a project index so I can find it later, pull any tasks into your task list, and register the project in the hub. You'll see exactly what I'm doing at each step and confirm before anything gets written."
 
-Wait for the user to respond before continuing. Do not use the ask_questions tool.
+Use the `ask_questions` tool with header **`Transcript`** and these two options:
 
-If the user picks A, read `examples/example-meeting-transcript.md` and use it as input. Say: "Good. That one's a solid example — watch what happens."
+- **Use the example** — ready-made stakeholder meeting at `examples/example-meeting-transcript.md`. Jump straight in.
+- **Use my own** — paste anything. Real meeting, rough bullet points, whatever.
 
-If the user picks B, say: "Paste it. Rough is fine."
+Wait for the user to pick before continuing.
+
+If the user picks the example, read `examples/example-meeting-transcript.md` and use it as input. Say: "Good. That one's a solid example — watch what happens."
+
+If the user picks their own, say: "Paste it. Rough is fine."
 
 When you have the notes, say:
 
@@ -139,16 +136,14 @@ Then say:
 Say:
 
 > "One thing left. How do you want me to talk to you? Not for external docs — just when we're working."
->
-> **A — Straight shooter.** Short, blunt, no fluff. You ask, I answer. Fast.
->
-> **B — Collaborative partner.** Conversational but sharp. I'll push back when something's off. Think with you, not just for you.
->
-> **C — Hype machine.** High energy. I'm invested in what you're building and I won't hide it.
->
-> Which one?
 
-Wait for the user to respond before continuing. Do not use the ask_questions tool.
+Use the `ask_questions` tool with header **`Agent tone`** and these three options:
+
+- **Straight shooter** — Short, blunt, no fluff. You ask, I answer. Fast.
+- **Collaborative** — Conversational but sharp. I'll push back when something's off. Think with you, not just for you.
+- **Hype machine** — High energy. I'm invested in what you're building and I won't hide it.
+
+Wait for the user to choose.
 
 Then:
 - Update the `## How I Work → Tone & Audience → Default` line in `AGENTS.md` to reflect their choice.

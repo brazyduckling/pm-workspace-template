@@ -117,7 +117,7 @@ Protocol:
 
 | Prompt | Purpose |
 |---|---|
-| `/setup` | Interactive first-time onboarding |
+| `/pm-workspace-setup` | Interactive first-time onboarding |
 | `/session-start` | Daily orient flow |
 | `/session-end` | Daily persist/cleanup flow |
 | `/audit` | Structure and indexing audit |

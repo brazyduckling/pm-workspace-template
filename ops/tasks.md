@@ -3,7 +3,7 @@
 ## Active
 
 - [ ] Customise `AGENTS.md` with your role, company, and projects
-- [ ] Run `@workspace /setup` to complete first-time setup
+- [ ] Run `@workspace /pm-workspace-setup` to complete first-time setup
 
 ## Completed
 

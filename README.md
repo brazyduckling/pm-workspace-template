@@ -58,7 +58,7 @@ Open VS Code → `File → Open Folder` → select the folder you just cloned.
 **Step 4 — Run the setup wizard**
 Open Copilot Chat (`Cmd+Shift+I` or click the Copilot icon in the sidebar) and type:
 ```
-@workspace /setup
+@workspace /pm-workspace-setup
 ```
 
 The wizard will guide you through everything interactively — paste a meeting transcript, see how it gets routed and indexed, then fill in your personal and org context.
@@ -110,7 +110,7 @@ Checks that all your docs are linked from a MOC, no broken links, everything pro
 ├── .github/
 │   ├── copilot-instructions.md     ← Points Copilot to AGENTS.md
 │   ├── instructions/               ← Auto-loaded formatting + routing rules
-│   └── prompts/                    ← Your AI commands (/setup, /session-start, etc.)
+│   └── prompts/                    ← Your AI commands (/pm-workspace-setup, /session-start, etc.)
 ├── docs/
 │   ├── index.md                    ← Hub linking all your projects
 │   └── general/
@@ -142,8 +142,8 @@ Meeting notes go to `docs/<project-name>/meeting-notes/`. PRDs go to `prds/`. De
 **"Copilot says it can't find my files"**
 Make sure you opened the *folder* in VS Code, not just individual files. `File → Open Folder` → select the repo root.
 
-**"/setup doesn't work"**
-Make sure to type `@workspace` before the command: `@workspace /setup`. The `@workspace` tells Copilot to read your files.
+**"/pm-workspace-setup doesn't work"**
+Make sure to type `@workspace` before the command: `@workspace /pm-workspace-setup`. The `@workspace` tells Copilot to read your files.
 
 **"Copilot is ignoring AGENTS.md"**
 Check that `.github/copilot-instructions.md` exists and contains the pointer line. This file is what makes Copilot load AGENTS.md automatically.

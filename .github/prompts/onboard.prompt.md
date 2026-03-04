@@ -8,15 +8,13 @@ description: "Interactive first-time onboarding — learn how the workspace work
 
 Start by saying:
 
-> **Hey — welcome! 🎉 You've just set up something genuinely useful.**
+> Welcome. You've set up a structured markdown workspace that gives me persistent memory across sessions. No more repeating context. Everything you add gets indexed for future use.
 >
-> This workspace is a structured folder of markdown files that gives me — your AI — persistent memory across sessions. No more re-explaining your projects from scratch. No more pasting the same context every time. Everything you drop here (meeting notes, PRDs, decisions, tasks) gets indexed and I can find and use it in every future conversation.
->
-> I'm going to show you exactly how it works by doing something real together right now. Takes about **10 minutes** and by the end you'll have a working knowledge base with real content in it. Let's go! 🚀
+> I'll show you how it works by processing a meeting transcript. Takes about 10 minutes. You'll end up with a working knowledge base.
 
 ## Phase 1 — Process Your First Meeting Notes
 
-This is the fun part. Let's actually use the system.
+This is the core part. Let's use the system.
 
 Present these two options as a selection for the user to pick from:
 
@@ -25,13 +23,13 @@ Present these two options as a selection for the user to pick from:
 
 Wait for the user to pick before continuing.
 
-If the user picks the example, read `examples/example-meeting-transcript.md` and use it as input. Say: "Great choice — it's a juicy one! Let me dig in."
+If the user picks the example, read `examples/example-meeting-transcript.md` and use it as input. Say: "Good choice. Let me process it."
 
-If the user picks their own, say: "Love it — go ahead and paste your notes below. Doesn't have to be pretty."
+If the user picks their own, say: "Paste your notes below."
 
 When you have the notes, before doing anything else, narrate what you're seeing:
 
-> "Okay! Here's what I pulled out of this..."
+> Here's what I extracted:
 
 Then show:
 - **Decisions** — things that got agreed
@@ -70,26 +68,24 @@ Wait for confirmation, then:
 
    Ask: "Add this to the hub?"
 
-6. After all confirmations, celebrate a little and narrate what just happened:
+6. After all confirmations, narrate what just happened:
 
-   > "Okay, look at what we just did! 🎯
+   > One messy transcript became a clean structured note, saved in the right folder, indexed in a MOC, action items in your task list, project registered in the hub. Every future session, I'll know this conversation happened.
    >
-   > One messy transcript → clean structured note, saved in the right folder, indexed in a MOC, action items in your task list, project registered in the hub. Every future session, I'll know this conversation happened.
-   >
-   > That's the whole system. This is what it does, every time, for every note, PRD, or doc you throw at it."
+   > That's the system. It does this for every note, PRD, or doc you add.
 
 ## Phase 2 — Quick PRD Preview (No Action Needed)
 
-Say something like:
+Say:
 
-> "Quick thing before we move on — PRDs work the same way but route differently."
+> PRDs work similarly but route to prds/.
 
 Explain briefly:
 - PRDs go to `docs/<project>/prds/` instead of `meeting-notes/`
 - MOC tracks them separately under a `## PRDs` section
 - You can link a PRD back to the meeting that inspired it using `[[wikilinks]]` — so there's a traceable thread from conversation → decision → spec
 
-Ask: "Want to try a PRD real quick, or shall we move on?"
+Ask: "Want to try a PRD now, or shall we move on?"
 
 If yes, run it with the same confirm-first pattern. If no, move on.
 
@@ -97,7 +93,7 @@ If yes, run it with the same confirm-first pattern. If no, move on.
 
 Say:
 
-> "Almost done! Last thing — I need a bit of context about you so I can actually be useful. Five quick questions, one at a time."
+> Last step: context about you so I can be useful. Five quick questions, one at a time.
 
 Ask one by one, waiting for each answer:
 1. "What's your job title and where do you work?"
@@ -116,19 +112,19 @@ First, list every file created during setup.
 
 Then say:
 
-> "You're set up. Here's your toolkit:"
->
+> You're set up. Here's your toolkit:
+
 > | Command | What it does |
 > |---|---|
 > | `@workspace /session-start` | Morning kickoff — reads your tasks and reminders, tells you what's going on, asks what you want to work on |
 > | `@workspace /session-end` | End-of-day wrap — updates tasks, processes your inbox, makes sure everything is indexed |
 > | `@workspace /audit` | Health check — finds missing MOCs, orphan docs, broken links |
->
-> **The best part? You can build your own.** Drop a `.prompt.md` file in `.github/prompts/` and it becomes a new `@workspace /command`. You can chain prompts together, reference each other, build full workflows. Weekly update? Draft a ticket? Prep for a stakeholder meeting? Make a prompt for it.
->
-> **One thing to always remember:** I only know what you put here. Meeting notes, PRDs, Slack threads, research — drop it in `inbox/` and I'll process it, or paste straight into chat. The more you feed me, the more useful I get.
->
-> Go wild. Seriously. This is your system now. 🔥
+
+> You can build your own commands. Add a `.prompt.md` file to `.github/prompts/` and it becomes a new `@workspace /command`. You can chain them into workflows. Weekly update? Draft a ticket? Prep for a stakeholder meeting? Make a prompt for it.
+
+> Remember: I only know what you put here. Meeting notes, PRDs, Slack threads, research — drop it in `inbox/` and I'll process it, or paste it straight into chat. The more context you feed me, the smarter I get.
+
+> This is your system.
 
 ---
 
@@ -136,7 +132,7 @@ Then say:
 
 Say:
 
-> "One last thing — how do you want me to talk to you? Not for docs or external comms, just when we're working together in here."
+> One last thing — how do you want me to talk to you? Not for docs or external comms, just when we're working together in here.
 
 Present these three options as a selection:
 
@@ -151,6 +147,6 @@ Then:
 - Tell them what it'll feel like:
   - Straight shooter: "Got it. Expect short, direct, no ceremony."
   - Collaborative partner: "Perfect. I'll think with you, not just for you."
-  - Hype machine: "Okay let's GO. This is going to be great 🚀"
+  - Hype machine: "Okay let's GO. This is going to be great"
 - Ask for confirmation before saving.
 

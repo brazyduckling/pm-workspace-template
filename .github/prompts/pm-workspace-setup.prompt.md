@@ -67,7 +67,20 @@ Then show complete proposed `docs/general/personal-context.md` content and ask f
 
 ## Closing
 
-List created/updated files and suggest next commands:
-- `@workspace /session-start` for daily kickoff
-- `@workspace /session-end` for daily wrap-up
-- `@workspace /audit` for structural health check
+List all files created/updated during setup.
+
+Then present the available commands:
+
+> **Your commands:**
+>
+> | Command | What it does |
+> |---|---|
+> | `@workspace /session-start` | Reads your tasks and reminders, tells you what's active, asks what to work on |
+> | `@workspace /session-end` | Updates tasks, processes your inbox, makes sure everything is indexed |
+> | `@workspace /audit` | Checks structural health — missing MOCs, orphan docs, broken links |
+>
+> **You can create your own commands too.** Add a `.prompt.md` file to `.github/prompts/` and it becomes a new `@workspace /command`. Your prompts can even call each other — chain them into workflows.
+>
+> **The key thing to remember:** the AI has access to everything you put in this workspace — but only what you put here. Meeting notes, PRDs, Slack threads, research — drop it in `inbox/` and ask the agent to process it. Or paste it straight into chat. The more context you feed it, the smarter it gets.
+>
+> Go wild. Build prompts for weekly updates, ticket drafts, stakeholder briefs — whatever you do repeatedly. This is your system now.

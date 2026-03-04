@@ -1,103 +1,156 @@
 ---
-description: "Interactive first-time setup wizard — process first meeting notes and fill context files"
+description: "Interactive first-time onboarding — learn how the workspace works by doing something real"
 ---
 
-# Setup Wizard
+# Onboarding
 
 **IMPORTANT:** This is an interactive walkthrough. **Do not create, modify, or save any file until the user explicitly confirms.** At every step, show proposed changes and ask for permission.
 
 Start by saying:
 
-> **Welcome to your PM knowledge base.**
+> **Hey — welcome! 🎉 You've just set up something genuinely useful.**
 >
-> This workspace is a structured folder of markdown files that gives me — your AI assistant — persistent memory across sessions. Everything you drop here (meeting notes, PRDs, decisions, tasks) gets indexed so I can find and use it in future conversations.
+> This workspace is a structured folder of markdown files that gives me — your AI — persistent memory across sessions. No more re-explaining your projects from scratch. No more pasting the same context every time. Everything you drop here (meeting notes, PRDs, decisions, tasks) gets indexed and I can find and use it in every future conversation.
 >
-> I'm going to walk you through how it works by doing something real together. It takes about **10 minutes**. Ready? Let's go.
+> I'm going to show you exactly how it works by doing something real together right now. Takes about **10 minutes** and by the end you'll have a working knowledge base with real content in it. Let's go! 🚀
 
-## Phase 1 — Process First Meeting Notes
+## Phase 1 — Process Your First Meeting Notes
 
-Ask the user:
+This is the fun part. Let's actually use the system.
 
-> We'll start by processing a meeting transcript. You have two options:
->
-> **A)** Use the example transcript included in this repo — it's a stakeholder alignment meeting about a customer portal redesign. You can find it at `examples/example-meeting-transcript.md`.
->
-> **B)** Paste your own meeting notes — any real or made-up meeting, even just a few bullet points.
->
-> Which do you prefer — **A** or **B**?
+Present these two options as a selection for the user to pick from:
 
-If the user picks A, read `examples/example-meeting-transcript.md` and use that as the input.
-If the user picks B, say: "Go ahead — paste your notes below."
+- **Use the example transcript** — there's a ready-made stakeholder meeting about a customer portal redesign waiting for you at `examples/example-meeting-transcript.md`. Perfect if you want to jump straight in.
+- **Use my own notes** — paste anything: a real meeting, a made-up one, even just a few bullet points. It all works.
 
-When user provides notes:
+Wait for the user to pick before continuing.
 
-1. Extract and show:
-   - Decisions
-   - Action items
-   - Open questions
-2. Ask: "Does this look right? Anything I missed or got wrong?"
-3. Ask: "What project does this belong to? Give it a short name, like `project-alpha`."
-4. Show proposed save path:
-   - `docs/<project>/meeting-notes/YYYY-MM-DD-<topic>.md`
-   - Explain that meeting notes live in `meeting-notes/` and date-prefix keeps sorting chronological.
-   - Ask: "Want me to create this file?"
-5. Show proposed project MOC:
-   - `docs/<project>/<project>-moc.md`
-   - Proposed entry: `- [[YYYY-MM-DD-<topic>]] — <one-line description>`
-   - Explain MOC purpose as project table of contents.
-   - Ask: "Want me to create this MOC?"
-6. If action items exist, show proposed task additions to `ops/tasks.md`.
-   - Ask: "Add these tasks?"
-7. Show proposed index update:
-   - New project link in `docs/index.md`
-   - Ask: "Add this to the hub?"
-8. Summarize the full pipeline in plain language:
-   - raw notes → structured doc
-   - routed to project folder
-   - indexed in MOC
-   - tasks captured
-   - project registered in the hub index
+If the user picks the example, read `examples/example-meeting-transcript.md` and use it as input. Say: "Great choice — it's a juicy one! Let me dig in."
 
-## Phase 2 — PRD Flow (Explain Briefly)
+If the user picks their own, say: "Love it — go ahead and paste your notes below. Doesn't have to be pretty."
 
-Explain briefly (no deep dive):
-- PRDs route to `docs/<project>/prds/`
-- MOC tracks PRDs in its own section
-- Related docs can be connected with `[[wikilinks]]`
+When you have the notes, before doing anything else, narrate what you're seeing:
 
-Ask: "Ready to fill context files, or do you want to try a PRD now?"
-If user chooses PRD now, use same confirm-first pattern.
+> "Okay! Here's what I pulled out of this..."
 
-## Phase 3 — Fill Context Files
+Then show:
+- **Decisions** — things that got agreed
+- **Action items** — things someone needs to do (with owner and deadline if mentioned)
+- **Open questions** — stuff that's still unresolved
 
-Say: "Last step — let's add some context about you so the AI knows who it's working with."
+Ask: "Does this look right? Anything I missed or got wrong?"
 
-### Personal Context Questions
-Ask one by one:
-1. Job title and company
-2. Team/domain
-3. Manager
-4. Top 1–3 goals for the next few months
-5. Working style preferences
+Wait for confirmation, then:
 
-Then show complete proposed `docs/general/personal-context.md` content and ask for confirmation before saving.
+1. Ask: "What project does this belong to? Give it a short name — like `customer-portal` or `q2-roadmap`."
+
+2. Show the exact file path you'd save to:
+   > `docs/<project>/meeting-notes/YYYY-MM-DD-<topic>.md`
+   >
+   > Meeting notes live in `meeting-notes/` inside the project folder. Date prefix keeps everything sorted chronologically — you can scroll back through weeks of meetings in order.
+
+   Ask: "Want me to create this?"
+
+3. Show the project MOC you'd create:
+   > `docs/<project>/<project>-moc.md`
+   >
+   > This is your project's table of contents. Every doc in this project gets listed here with a `[[wikilink]]` and a one-liner. Instead of scanning folders, I just read this file and instantly know what's here. It's tiny but it's the whole magic of the system.
+
+   Show the entry: `- [[YYYY-MM-DD-<topic>]] — <one-line description>`
+
+   Ask: "Want me to create this MOC?"
+
+4. If there are action items, show what you'd add to `ops/tasks.md`:
+   > This is your task list. It's the first thing I read every morning when you run `/session-start`. Any action item from any meeting goes here.
+
+   Ask: "Add these tasks?"
+
+5. Show the hub update:
+   > I'd add a line to `docs/index.md` linking to the new project MOC. This is how I know the project exists. Without this, it's invisible to me.
+
+   Ask: "Add this to the hub?"
+
+6. After all confirmations, celebrate a little and narrate what just happened:
+
+   > "Okay, look at what we just did! 🎯
+   >
+   > One messy transcript → clean structured note, saved in the right folder, indexed in a MOC, action items in your task list, project registered in the hub. Every future session, I'll know this conversation happened.
+   >
+   > That's the whole system. This is what it does, every time, for every note, PRD, or doc you throw at it."
+
+## Phase 2 — Quick PRD Preview (No Action Needed)
+
+Say something like:
+
+> "Quick thing before we move on — PRDs work the same way but route differently."
+
+Explain briefly:
+- PRDs go to `docs/<project>/prds/` instead of `meeting-notes/`
+- MOC tracks them separately under a `## PRDs` section
+- You can link a PRD back to the meeting that inspired it using `[[wikilinks]]` — so there's a traceable thread from conversation → decision → spec
+
+Ask: "Want to try a PRD real quick, or shall we move on?"
+
+If yes, run it with the same confirm-first pattern. If no, move on.
+
+## Phase 3 — Tell Me About You
+
+Say:
+
+> "Almost done! Last thing — I need a bit of context about you so I can actually be useful. Five quick questions, one at a time."
+
+Ask one by one, waiting for each answer:
+1. "What's your job title and where do you work?"
+2. "What team or domain are you in right now?"
+3. "Who's your manager?"
+4. "What are your top 1–3 goals for the next few months?"
+5. "How do you like to work? (e.g. async-first, fast-paced, data-driven, whatever fits)"
+
+Then show the full proposed `docs/general/personal-context.md` and ask: "Happy with this? Shall I save it?"
+
+Wait for confirmation before saving.
 
 ## Closing
 
-List all files created/updated during setup.
+First, list every file created during setup.
 
-Then present the available commands:
+Then say:
 
-> **Your commands:**
+> "You're set up. Here's your toolkit:"
 >
 > | Command | What it does |
 > |---|---|
-> | `@workspace /session-start` | Reads your tasks and reminders, tells you what's active, asks what to work on |
-> | `@workspace /session-end` | Updates tasks, processes your inbox, makes sure everything is indexed |
-> | `@workspace /audit` | Checks structural health — missing MOCs, orphan docs, broken links |
+> | `@workspace /session-start` | Morning kickoff — reads your tasks and reminders, tells you what's going on, asks what you want to work on |
+> | `@workspace /session-end` | End-of-day wrap — updates tasks, processes your inbox, makes sure everything is indexed |
+> | `@workspace /audit` | Health check — finds missing MOCs, orphan docs, broken links |
 >
-> **You can create your own commands too.** Add a `.prompt.md` file to `.github/prompts/` and it becomes a new `@workspace /command`. Your prompts can even call each other — chain them into workflows.
+> **The best part? You can build your own.** Drop a `.prompt.md` file in `.github/prompts/` and it becomes a new `@workspace /command`. You can chain prompts together, reference each other, build full workflows. Weekly update? Draft a ticket? Prep for a stakeholder meeting? Make a prompt for it.
 >
-> **The key thing to remember:** the AI has access to everything you put in this workspace — but only what you put here. Meeting notes, PRDs, Slack threads, research — drop it in `inbox/` and ask the agent to process it. Or paste it straight into chat. The more context you feed it, the smarter it gets.
+> **One thing to always remember:** I only know what you put here. Meeting notes, PRDs, Slack threads, research — drop it in `inbox/` and I'll process it, or paste straight into chat. The more you feed me, the more useful I get.
 >
-> Go wild. Build prompts for weekly updates, ticket drafts, stakeholder briefs — whatever you do repeatedly. This is your system now.
+> Go wild. Seriously. This is your system now. 🔥
+
+---
+
+## Final Step — Pick Your Agent Tone
+
+Say:
+
+> "One last thing — how do you want me to talk to you? Not for docs or external comms, just when we're working together in here."
+
+Present these three options as a selection:
+
+- **Straight shooter** — Blunt, no fluff, no filler. You get direct answers, fast. Great if you hate small talk and just want things done.
+- **Collaborative partner** — Mix of professional and conversational. I'll think through things with you, push back gently when something feels off, and match your energy.
+- **Hype machine** — High energy, enthusiastic, celebrates wins. Makes the work feel fun. Best if you want a thinking partner who's genuinely excited about what you're building.
+
+Wait for the user to choose.
+
+Then:
+- Update the `## How I Work → Tone & Audience → Default` line in `AGENTS.md` to reflect their choice.
+- Tell them what it'll feel like:
+  - Straight shooter: "Got it. Expect short, direct, no ceremony."
+  - Collaborative partner: "Perfect. I'll think with you, not just for you."
+  - Hype machine: "Okay let's GO. This is going to be great 🚀"
+- Ask for confirmation before saving.
+

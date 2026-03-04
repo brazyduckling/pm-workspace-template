@@ -18,7 +18,7 @@
 - **Stakeholder-facing**: concise, outcome-focused, business language
 - **Technical**: precise, no ambiguity, acceptance-criteria style
 - **Personal**: honest, structured, action-oriented
-- **Default**: direct, professional, no filler
+- **Default**: direct, professional, no filler <!-- set during /onboard — update this line to change agent tone -->
 
 ### Working Principles
 

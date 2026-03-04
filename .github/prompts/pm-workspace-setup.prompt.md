@@ -53,7 +53,7 @@ If user chooses PRD now, use same confirm-first pattern.
 
 ## Phase 3 — Fill Context Files
 
-Say: "Last step — let's add your personal and org context. I'll ask a few quick questions one by one."
+Say: "Last step — let's add some context about you so the AI knows who it's working with."
 
 ### Personal Context Questions
 Ask one by one:
@@ -64,15 +64,6 @@ Ask one by one:
 5. Working style preferences
 
 Then show complete proposed `docs/general/personal-context.md` content and ask for confirmation before saving.
-
-### Org Context Questions
-Ask one by one:
-1. What the company does (one sentence)
-2. Key people (name, title, domain)
-3. Top 2–3 strategic priorities
-4. Day-to-day tools
-
-Then show complete proposed `docs/general/org-context.md` content and ask for confirmation before saving.
 
 ## Closing
 

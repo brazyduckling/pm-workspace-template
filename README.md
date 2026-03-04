@@ -1,73 +1,155 @@
 # PM Knowledge Base Template
 
-A ready-to-use workspace that turns GitHub Copilot in VS Code into a PM assistant with persistent memory across sessions.
+**Turn VS Code + GitHub Copilot into your personal PM knowledge base** — with persistent memory across sessions, automatic routing, and structured indexing.
 
-## What This Is
+> Built for the AI for PMs workshop. No prior experience with Copilot or knowledge management required.
 
-A folder of markdown files with instruction files that tell Copilot:
-- where to put things (meeting notes, PRDs, decisions, tasks)
-- how to format them (frontmatter, wikilinks, naming)
-- how to navigate them (MOCs / Maps of Content)
-- how to keep structure healthy (audit checks)
+---
 
-The folder is the memory. Copilot does not keep memory between sessions by itself.
+## The Problem This Solves
 
-## Prerequisites
+ChatGPT and Gemini forget everything between conversations. You end up re-explaining your projects, re-pasting context, and getting generic answers.
 
-Before the workshop, make sure you have:
-- VS Code installed
-- GitHub Copilot access
-- GitHub Copilot extension installed in VS Code
-- Git installed
+This template gives Copilot a folder it can read as its memory. Every meeting note, decision, and task you save becomes part of its context — permanently.
 
-## Quick Start
+---
 
-1. Fork this repository.
-2. Open it as a folder in VS Code.
-3. Open Copilot Chat and run `@workspace /setup`.
-4. Follow the interactive onboarding flow.
+## Before the Workshop
 
-The wizard takes you through:
-- processing a first meeting transcript
-- understanding routing + MOCs
-- filling personal and org context
+You'll need these installed and working. **Do this before you arrive.**
 
-## Daily Workflow
+### 1. VS Code
+Download and install from [code.visualstudio.com](https://code.visualstudio.com/).
 
-- Start of day: `@workspace /session-start`
-- End of day: `@workspace /session-end`
-- Periodically: `@workspace /audit`
+### 2. GitHub account with Copilot access
+- You need a **GitHub Copilot subscription** (Individual: $10/mo).
+- If you don't have one, start a free trial at [github.com/features/copilot](https://github.com/features/copilot).
+
+### 3. GitHub Copilot extension in VS Code
+- Open VS Code → click the Extensions icon (left sidebar)
+- Search for **GitHub Copilot**
+- Click Install
+
+### 4. Git
+Download from [git-scm.com](https://git-scm.com/downloads). Most Macs already have it — run `git --version` in Terminal to check.
+
+### Verify it's all working
+1. Open VS Code
+2. Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows)
+3. Type `Copilot: Open Chat` — a chat panel should open on the right
+
+If the chat panel opens, you're ready.
+
+---
+
+## Quick Start (do this during the workshop)
+
+**Step 1 — Fork this repo**
+Click the **Fork** button at the top of this page. This creates your own copy to customize.
+
+**Step 2 — Clone it to your computer**
+```bash
+git clone https://github.com/<your-username>/pm-workspace-template
+```
+
+**Step 3 — Open in VS Code**
+Open VS Code → `File → Open Folder` → select the folder you just cloned.
+
+**Step 4 — Run the setup wizard**
+Open Copilot Chat (`Cmd+Shift+I` or click the Copilot icon in the sidebar) and type:
+```
+@workspace /setup
+```
+
+The wizard will guide you through everything interactively — paste a meeting transcript, see how it gets routed and indexed, then fill in your personal and org context.
+
+---
+
+## After the Workshop — Daily Habits
+
+**Every morning:**
+```
+@workspace /session-start
+```
+Copilot reads your tasks and reminders and tells you what's on your plate.
+
+**During the day:**
+Paste raw notes into Copilot Chat and ask it to extract decisions and action items. Or drop files into `inbox/` — they'll get routed when you run session-end.
+
+**End of day:**
+```
+@workspace /session-end
+```
+Copilot updates your tasks, processes your inbox, and makes sure everything is indexed.
+
+**Periodically:**
+```
+@workspace /audit
+```
+Checks that all your docs are linked from a MOC, no broken links, everything properly structured.
+
+---
 
 ## Core Concepts
 
 | Concept | What it is |
 |---|---|
-| AGENTS.md | Instruction manual for Copilot in this workspace |
-| MOC | Map of Content: index file for each area/project |
-| `[[wikilinks]]` | Internal links connecting notes and documents |
-| `ops/` | Working memory (`tasks.md`, `reminders.md`) |
-| `inbox/` | Staging area for raw inputs |
-| Prompt files | Reusable interactive workflows in `.github/prompts/` |
+| **AGENTS.md** | The AI's instruction manual. Tells Copilot who you are, how to behave, and where things go. Loaded automatically every session. |
+| **MOC** | Map of Content. An index file per project — lists every doc with a link and one-line description. The AI reads this instead of scanning folders. |
+| **`[[wikilinks]]`** | How notes connect to each other. Write `[[filename]]` to link. The AI follows these connections for context. |
+| **`ops/`** | Working memory. `tasks.md` and `reminders.md` — updated every session. |
+| **`inbox/`** | Drop zone for raw input. Files here get routed to the right place. |
+| **Prompt files** | Reusable AI commands saved in `.github/prompts/`. Invoke with `@workspace /name`. |
 
-## Adding a New Project
-
-1. Create `docs/<project-name>/`.
-2. Create `docs/<project-name>/<project-name>-moc.md`.
-3. Add it to `docs/index.md`.
-4. Add it to the Knowledge Graph table in `AGENTS.md`.
-
-Meeting notes should go to `docs/<project-name>/meeting-notes/`.
+---
 
 ## Folder Structure
 
-- `AGENTS.md` — AI behavior + structure rules
-- `.github/copilot-instructions.md` — bridge that points Copilot to AGENTS.md
-- `.github/instructions/` — formatting + routing rules
-- `.github/prompts/` — interactive prompt workflows
-- `docs/` — knowledge base + MOCs
-- `ops/` — tasks and reminders
-- `inbox/` — temporary raw capture
+```
+├── AGENTS.md                       ← AI's instruction manual
+├── .github/
+│   ├── copilot-instructions.md     ← Points Copilot to AGENTS.md
+│   ├── instructions/               ← Auto-loaded formatting + routing rules
+│   └── prompts/                    ← Your AI commands (/setup, /session-start, etc.)
+├── docs/
+│   ├── index.md                    ← Hub linking all your projects
+│   └── general/
+│       ├── personal-context.md     ← Your role, goals, preferences
+│       └── org-context.md          ← Your org, key contacts, strategy
+├── ops/
+│   ├── tasks.md                    ← Active work items
+│   └── reminders.md                ← Time-bound follow-ups
+└── inbox/                          ← Drop raw files here
+```
 
-## Optional
+---
 
-This structure is compatible with Obsidian if you also want graph visualization.
+## Adding a New Project
+
+When you start working on something new:
+
+1. Create `docs/<project-name>/` folder
+2. Create `docs/<project-name>/<project-name>-moc.md` (the project's index)
+3. Add a link in `docs/index.md` under Project Areas
+4. Add an entry to the Knowledge Graph table in `AGENTS.md`
+
+Meeting notes go to `docs/<project-name>/meeting-notes/`. PRDs go to `prds/`. Decisions to `decisions/`.
+
+---
+
+## Troubleshooting
+
+**"Copilot says it can't find my files"**
+Make sure you opened the *folder* in VS Code, not just individual files. `File → Open Folder` → select the repo root.
+
+**"/setup doesn't work"**
+Make sure to type `@workspace` before the command: `@workspace /setup`. The `@workspace` tells Copilot to read your files.
+
+**"Copilot is ignoring AGENTS.md"**
+Check that `.github/copilot-instructions.md` exists and contains the pointer line. This file is what makes Copilot load AGENTS.md automatically.
+
+---
+
+## Optional: Obsidian
+
+Open this folder as an [Obsidian](https://obsidian.md/) vault to visualize your knowledge graph and navigate via `[[wikilinks]]`. Not required — everything works in VS Code alone.

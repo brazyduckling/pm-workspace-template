@@ -1,6 +1,6 @@
 # Example Meeting Transcript
 
-Use this as sample input for the `/pm-workspace-setup` wizard if you don't have your own meeting notes handy.
+Use this as sample input for the `/onboard` wizard if you don't have your own meeting notes handy.
 
 ---
 

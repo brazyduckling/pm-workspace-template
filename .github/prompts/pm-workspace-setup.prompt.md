@@ -6,11 +6,28 @@ description: "Interactive first-time setup wizard — process first meeting note
 
 **IMPORTANT:** This is an interactive walkthrough. **Do not create, modify, or save any file until the user explicitly confirms.** At every step, show proposed changes and ask for permission.
 
+Start by saying:
+
+> **Welcome to your PM knowledge base.**
+>
+> This workspace is a structured folder of markdown files that gives me — your AI assistant — persistent memory across sessions. Everything you drop here (meeting notes, PRDs, decisions, tasks) gets indexed so I can find and use it in future conversations.
+>
+> I'm going to walk you through how it works by doing something real together. It takes about **10 minutes**. Ready? Let's go.
+
 ## Phase 1 — Process First Meeting Notes
 
-Start with this exact prompt to the user:
+Ask the user:
 
-"Let's jump straight in. Paste a meeting transcript below — any meeting, real or made up, even just a few bullet points of notes."
+> We'll start by processing a meeting transcript. You have two options:
+>
+> **A)** Use the example transcript included in this repo — it's a stakeholder alignment meeting about a customer portal redesign. You can find it at `examples/example-meeting-transcript.md`.
+>
+> **B)** Paste your own meeting notes — any real or made-up meeting, even just a few bullet points.
+>
+> Which do you prefer — **A** or **B**?
+
+If the user picks A, read `examples/example-meeting-transcript.md` and use that as the input.
+If the user picks B, say: "Go ahead — paste your notes below."
 
 When user provides notes:
 

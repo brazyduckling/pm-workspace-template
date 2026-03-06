@@ -19,4 +19,4 @@ Cross-project and organisational content not scoped to any single project.
 
 ## Documents
 
-> No other docs yet. Add as created.
+- [[design-decisions]] — Architecture decisions, design rationale, and operating manual for the template

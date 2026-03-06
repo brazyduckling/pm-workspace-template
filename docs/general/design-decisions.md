@@ -88,13 +88,13 @@ The core problem it solves: AI assistants (ChatGPT, Copilot, Gemini) forget ever
 
 ---
 
-### 7. Four prompts, not more
+### 7. Five core prompts
 
-**Decision:** The template ships with exactly four prompts: `/onboard`, `/session-start`, `/session-end`, `/audit`.
+**Decision:** The template ships with five prompts: `/onboard`, `/session-start`, `/session-end`, `/audit`, `/personalize`.
 
-**Why:** A template with 10+ prompts requires the user to understand each one before they can start. Four prompts cover the full lifecycle (setup → daily start → daily end → health check) without overwhelming a new user. Additional prompts are left to the user to create — AGENTS.md instructs them to add `.prompt.md` files for any repeated task.
+**Why:** A template with 10+ prompts requires the user to understand each one before they can start. Five prompts cover the full lifecycle (setup → daily start → daily end → health check → personal context) without overwhelming a new user. Additional prompts are left to the user to create — AGENTS.md instructs them to add `.prompt.md` files for any repeated task.
 
-**Scope update:** `/onboard` was later restructured into: Orientation → transcript processing → prompt extension → personalisation → tone selection. Prompt count stayed the same (`/onboard`, `/session-start`, `/session-end`, `/audit`); only onboarding sequence changed.
+**Why `/personalize` is separate from `/onboard`:** Personal context (role, team, goals, working style) is valuable to set up, but not everyone is ready to answer those questions in the middle of a 10-minute onboarding session. Separating it lets users run the wizard first, see value immediately, and personalise when it feels natural — without delaying the transcript demo.
 
 **Prompts that were cut during design:**
 - `/distill` — extracting decisions from notes. Merged into the `/session-end` inbox processing flow.
@@ -111,15 +111,16 @@ The core problem it solves: AI assistants (ChatGPT, Copilot, Gemini) forget ever
 **Why:** Pure action-first works well in live demos, but a boilerplate must also work for people onboarding alone without a call or recording. A 60-second map of the structure first (`docs/`, `ops/`, `inbox/`, MOCs, wikilinks, session rhythm) gives enough context for the transcript demo to make sense. Then the user sees immediate value, learns how to extend the system with custom prompts, and only then personalises it.
 
 **Phases of the onboarding:**
-1. Orient to folder structure and information flow
-2. Process a transcript (demo the core mechanic)
-3. Add/preview custom prompt creation (`.github/prompts/*.prompt.md`)
-4. Fill personal context (make the agent useful for this specific user)
-5. Pick agent tone (set a working preference that persists)
+1. Orient to folder structure and information flow (directory table + MOC/wikilink explanation)
+2. Process a transcript (demo the core mechanic — decisions, actions, step-by-step filing, post-filing breakdown)
+3. Pick agent tone (stored in AGENTS.md, applies to all future sessions)
+4. Add/preview custom prompt creation (`.github/prompts/*.prompt.md`)
+
+**Personal context is not in the wizard.** It's a separate `/personalize` prompt. See decision 7.
 
 **What was removed:** The PRD mini-demo step was cut from onboarding to keep setup concise. PRD routing is still documented and follows the same mechanics (`docs/<project>/prds/` + MOC indexing).
 
-**Transcript source:** The user can use the included example (`examples/example-meeting-transcript.md`) or paste their own. The example is a realistic customer portal redesign stakeholder meeting — specific enough to produce real output (decisions, owners, timeline) without being tied to any real company.
+**Transcript source:** The user can use the included example (`examples/example-meeting-transcript.md`) or paste their own. The example is a chaotic emergency standup — a broken driver tracking feature with a lat/long flip bug, disappearing UI, and a self-DDoS — realistic enough to produce real output (decisions, owners, open questions) without being tied to any real company.
 
 ---
 
@@ -235,7 +236,7 @@ After running `/onboard`, the most impactful customisations:
 
 1. **Add your org context.** Open `docs/general/org-context.md` and fill in your team structure, key contacts, and current strategic priorities. This is what the agent uses when drafting stakeholder-facing content.
 
-2. **Create a project prompt.** If you repeatedly draft the same type of document (JIRA tickets, weekly updates, stakeholder briefs), create a `.prompt.md` in `.github/prompts/`. It becomes a new `@workspace /command` immediately.
+2. **Create a project prompt.** If you repeatedly draft the same type of document (JIRA tickets, weekly updates, stakeholder briefs), create a `.prompt.md` in `.github/prompts/`. It becomes a new `/command` immediately.
 
 3. **Add your current projects.** If you have existing meeting notes or PRDs you want the system to know about, drop them in `inbox/` and run `/session-end` to route them.
 

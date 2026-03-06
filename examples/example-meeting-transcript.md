@@ -4,80 +4,69 @@ Use this as sample input for the `/onboard` wizard if you don't have your own me
 
 ---
 
-**Meeting: Customer Portal Redesign — Stakeholder Alignment**
-**Date:** March 3, 2026
-**Attendees:** Sarah Chen (Head of Product), Marcus Webb (Engineering Lead), Priya Patel (Design Lead), James Kowalski (Customer Success), You (PM)
+**Meeting: [URGENT] Checkout "Sticky Cart" vs. "Fast-Track" Logic Sync**
+**Date:** March 6, 2026
+**Time:** 10:00 AM – 10:30 AM
+**Participants:** Sarah (Product Manager - Core UX), Dave (Senior Engineer - Backend/APIs), Meera (Lead Designer), Josh (Marketing/Growth), Marcus (QA/Testing)
 
 ---
 
-sarah: okay so let's just get into it, I've got another call at 3:30. where are we on the portal redesign?
+[00:00:01] Sarah: Okay, can everyone hear me? I'm at the airport so sorry if there's an announcement. We need to lock the logic for the "Hungry Now" button before the sprint ends tonight.
 
-you: so we've been through the discovery phase, talked to about 15 customers over the last two weeks. the biggest pain point is definitely the reporting dashboard — it's too slow, the data is stale, and people are exporting to excel just to get basic charts
+[00:01:15] Dave: Wait, I thought we were calling it "Express Checkout"? The API docs I wrote last night say POST /v1/express-track. If we change the name again, the frontend hooks are going to break.
 
-marcus: yeah the export thing is a huge red flag. we're basically admitting our own tool can't do what they need
+[00:02:10] Meera: It's "Hungry Now" in the UI. Marketing insisted. Josh?
 
-priya: from a design perspective i've been looking at how other tools handle this and honestly our information architecture is the root problem. users can't find things. the navigation was built like 4 years ago when we had 3 features, now we have 20
+[00:02:22] Josh: Yeah, "Express" felt too much like a shipping thing. "Hungry Now" tested 14% better in the London focus groups. But Sarah, did we decide if it bypasses the "Do you want a side of garlic bread?" cross-sell? Because if it does, the average order value (AOV) is going to tank.
 
-sarah: okay so are we saying the reporting dashboard is the priority or the overall navigation?
+[00:04:05] Sarah: That's the mess. If it's a "fast-track," it has to be fast. If we pop up three modals asking about dips and drinks, it's just the normal checkout with a different colored button.
 
-you: i think we need to separate those. the dashboard is the acute pain — customers are literally churning over this. navigation is the chronic issue. i'd say dashboard first, navigation in parallel as a design workstream
+[00:05:30] Marcus: Hey guys, jumping in — I found a bug in the staging build. If a user has an expired credit card but clicks "Hungry Now," the app just spins forever. It doesn't redirect to the payment update page. It just... hangs.
 
-sarah: that makes sense. james what are you hearing from the CS side?
+[00:06:45] Dave: That's because the fast-track endpoint assumes a valid payment_token is present. It doesn't have an error handler for 402 Payment Required. I can fix it, but I'll need another two hours.
 
-james: yeah so two of our enterprise accounts — Meridian and TechFlow — both flagged the dashboard in their last QBRs. Meridian specifically said they'd evaluate alternatives at renewal in June if we don't fix it. that's a $450K account.
+[00:08:12] Meera: Also, Sarah, look at the Figma link I just sent. If the user is ordering from a place with "Customizable Toppings" (like a pizza place), the "Hungry Now" button is overlapping the "Add Extra Cheese" toggle. It looks like a total mess on iPhone SE screens.
 
-sarah: june?? that's three months away
+[00:10:00] Sarah: Ugh, the SE users. Okay, can we hide the button if the screen height is below a certain pixel count?
 
-james: yeah. and honestly they're not the only ones, there's probably 5-6 mid-market accounts saying similar things, they're just less vocal about it
+[00:11:15] Josh: No way. A huge chunk of our late-night student demographic uses older iPhones. We can't cut them out of the "fast" experience. They're the ones most likely to use it!
 
-marcus: okay so timeline wise, if dashboard is priority one, I think we could do a meaningful v1 in about 6 weeks if we descope some things. the real-time data is the hard part. right now everything goes through a batch ETL that runs every 4 hours.
+[00:13:00] Dave: Can we go back to the "Sticky Cart" logic? If they have stuff in their cart from yesterday, and they hit "Hungry Now" on a new restaurant, what happens? Do we clear the old cart? Or merge them? Because we can't do multi-restaurant delivery yet.
 
-you: what would it take to get that closer to real-time?
+[00:14:20] Sarah: It should definitely clear the old cart.
 
-marcus: we've been looking at this actually. there's two options — one is to move to a streaming architecture, which is the right long-term answer but probably 3-4 months of work. the other is to just increase the batch frequency to every 15 minutes, which we could do in about 2 weeks
+[00:14:35] Meera: Wait, if I'm halfway through a £50 family order and I accidentally tap "Hungry Now" on a burger place, I lose my whole cart? I'd delete the app.
 
-priya: from the user side, 15-minute refresh would solve 90% of the complaints honestly. people don't need second-by-second data, they need data that isn't 4 hours old
+[00:16:00] Josh: We need a "Are you sure?" modal.
 
-sarah: let's do the quick fix first then. marcus, can your team start on the batch frequency this sprint?
+[00:16:15] Sarah: NO. No more modals! The whole point of this feature is one-tap ordering. If we add an "Are you sure?" modal, we've just invented a very expensive "Checkout" button.
 
-marcus: yeah we can. i'll need to pull dave off the API migration though
+[00:18:45] Marcus: Guys, I'm still seeing the spinning wheel on the expired card thing. Dave, did you push the fix to dev-3?
 
-sarah: the API migration can wait. priya, how fast can you get dashboard mockups ready?
+[00:19:00] Dave: No, Marcus, I'm in this meeting. I can't code and talk at the same time. Also, Sarah, the legal team sent an email — apparently, we need to show the delivery fee before the tap. We can't just hide it until the receipt.
 
-priya: i've actually already started sketching. i can have high-fidelity mockups by end of next week if i get the data model from marcus's team. i want to make sure we're showing the right metrics. also — hot take — i think we should kill the current dashboard completely and rebuild from scratch rather than iterate. it's spaghetti
+[00:21:10] Sarah: (Heavy sigh) Okay, so we need: the button to show the total price including fees, a way to handle expired cards without a "hang," a solution for the overlapping UI on small screens, and a decision on the "Clear Cart" catastrophe.
 
-marcus: agreed honestly. the frontend code for that dashboard is from 2022 and nobody wants to touch it
+[00:23:30] Meera: What if the "Hungry Now" button only appears after you've selected your main items? Like, it replaces the "Go to Cart" button?
 
-you: so to summarize what i'm hearing — we're doing a phased approach. phase one is the quick batch frequency fix plus a complete dashboard redesign. phase two is the streaming architecture. and priya runs the navigation IA workstream in parallel
+[00:24:50] Josh: That defeats the purpose. The "Hungry Now" should be on the home screen for "The Usual" order. Like, "Tap here to get your Friday Night Pad Thai."
 
-sarah: yes. and i want weekly updates on this. james, can you set up a shared slack channel with the Meridian account team so we have direct signal on whether our changes are landing?
+[00:26:15] Dave: If we're doing "The Usual" from the home screen, that's a completely different API. That's a reorder logic, not a checkout logic. We haven't even scoped that.
 
-james: yep, i'll set that up today
+[00:27:40] Sarah: Okay, we're spiraling. We have 2 minutes. Here's the deal:
 
-marcus: one more thing — we should probably also look at the mobile experience. i've been hearing that more customers are trying to check dashboards on their phones and it's basically unusable
+Dave: Fix the 402 error hang. Just redirect to the standard checkout if the payment fails.
 
-priya: oh god yeah the mobile thing is bad. but let's not scope creep. can we add that as a follow-up?
+Meera: Shrink the button padding for SE users. Don't hide it.
 
-you: agreed. i'll add it as a future consideration in the PRD. should not block phase one.
+Josh: We're keeping the cross-sells for now, but only ONE. Pick the best one.
 
-sarah: fine. what about the budget for the streaming architecture? that's going to need infrastructure investment
+Sarah (Me): I will talk to Legal about the "Price on Button" requirement.
 
-marcus: yeah so rough numbers — we'd need to spin up a Kafka cluster and probably hire or reallocate one more backend engineer. i'd estimate maybe $30-40K in infra costs per year plus salary. i can put together a detailed proposal
+[00:29:10] Marcus: And the cart clearing thing?
 
-sarah: do that. get me the proposal by end of month so i can take it to the leadership review. anything else?
+[00:29:45] Sarah: If they have a cart already, the "Hungry Now" button turns into "View Cart." We don't clear anything. It's safer.
 
-you: one thing — I want to run a beta of the new dashboard with 3-4 friendly customers before we GA. james, can you identify who'd be good candidates?
+[00:30:00] Dave: That's going to take until Tuesday.
 
-james: yeah Meridian would obviously be one. i'd say CloudBase and maybe Nexus Digital — they're both engaged and give good feedback
-
-priya: oh also — can we get analytics on the current dashboard? i want baseline metrics so we can show improvement
-
-marcus: we've got mixpanel on it. i'll pull a report this week
-
-sarah: great. let's reconvene next wednesday same time. thanks everyone
-
-you: thanks all. i'll send out a summary with action items today
-
-marcus: sounds good
-
-james: thanks!
+[00:30:15] Sarah: Make it happen by Monday. Bye everyone, they're calling my group for boarding.

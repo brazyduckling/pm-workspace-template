@@ -22,25 +22,32 @@ Start by saying:
 
 Say:
 
-> "Before we run anything, here's the map so what follows makes sense."
+> "Before we run anything — here's the whole setup:"
+
+Show this table:
+
+> | Folder / File | What it is | When you use it |
+> |---|---|---|
+> | `AGENTS.md` | My instruction manual | Auto-loaded — I read it every session |
+> | `docs/` | Permanent knowledge — notes, decisions, PRDs | Anything you want to remember long-term |
+> | `ops/` | Working state — tasks and reminders | Read every single session |
+> | `inbox/` | Raw staging area | Drop messy notes here; they get sorted later |
+> | `docs/index.md` | The hub — links to all project indexes | Starting point for all navigation |
+
+Then say:
+
+> "Two concepts worth knowing:"
 >
-> "`AGENTS.md` is my instruction manual. It tells me how to behave and where things go."
+> - **MOCs** — every project has an index file (`<name>-moc.md`). I read that to know what exists — I don't scan folders.
+> - **Wikilinks** — internal links use `[[double brackets]]`. They connect notes into a graph I can follow across sessions.
 >
-> "`docs/` is permanent knowledge. That's where meeting notes, decisions, and PRDs live."
+> "Daily rhythm is three steps:"
 >
-> "`ops/` is working state. That's your active `tasks.md` and `reminders.md`, read every session."
+> 1. **Morning** — run `/session-start`. I read your tasks and reminders and tell you what's happening.
+> 2. **During the day** — paste content into chat or drop files in `inbox/`.
+> 3. **End of day** — run `/session-end`. I update tasks, sort your inbox, and make sure everything is indexed.
 >
-> "`inbox/` is a staging area for raw input. If you drop messy notes there, I can route them later."
->
-> "I navigate through MOCs (Map of Content files), not by blindly scanning folders."
->
-> "Internal links use `[[wikilinks]]`, so notes become a connected graph I can follow."
->
-> "Your hub is `docs/index.md`. It links to project MOCs. Project MOCs link to project documents."
->
-> "Daily rhythm is simple: `/session-start` in the morning, work during the day, `/session-end` before you stop."
->
-> "Now let's make this real with one transcript so you can see the full flow end to end."
+> "That's the whole setup. Now let's make it real."
 
 ## Phase 2 — Process Your First Meeting Notes
 
@@ -100,11 +107,27 @@ Wait for confirmation, then:
 
    Ask: "Add it?"
 
-6. After all confirmations, narrate what just happened:
+6. After all confirmations, explain what just happened in plain terms:
 
-   > "That's it. One messy transcript → structured note in the right folder, indexed in a MOC, action items captured, project registered in the hub.
+   Say:
+
+   > "Let me break down what just happened — because this is the core loop you'll use every day:"
+
+   Show this table:
+
+   > | What I did | Why it matters |
+   > |---|---|
+   > | Pulled out decisions, actions, and open questions | Raw text has no shape. Now it's scannable and reusable. |
+   > | Saved as a dated file in `docs/<project>/notes/` | Date prefix = always sorts chronologically. Project folder = lives with everything else on that project. |
+   > | Created `<project>-moc.md` (the project index) | I read this one small file in future sessions to know what exists — not the whole folder. |
+   > | Added action items to `ops/tasks.md` | First thing I read every morning. All tasks, all projects, one place. |
+   > | Registered the project in `docs/index.md` | Without this link, the project is invisible to me next time. This is how I find it. |
+
+   Then say:
+
+   > "That's the whole system. Messy input goes in → structured output comes out → everything is indexed so I can find it later.
    >
-   > Every future session, I know this conversation happened. That's the whole thing. That's what this system does."
+   > You'll never need to re-explain this meeting to me. It's just there."
 
 ## Phase 3 — Add Your First Custom Prompt
 

@@ -251,6 +251,18 @@ Say:
 > "The office will keep getting smarter."
 >
 > "If you have questions, feedback, or ideas — reach out to **Michał Witkowski** (the person who built this). Happy to help."
+
+Say:
+
+> "Before you go — here's what this system has actually done for people using it in the real world:"
 >
-> "Now go use your office."
+> - **Caught gaps between meetings and tickets.** After a stakeholder meeting, I compared the agreed decisions against the JIRA ticket. The ticket was missing a key constraint. One conversation, one fix — before it became a sprint problem.
+>
+> - **Mapped out a full initiative from JIRA tickets — with a diagram.** With all the tickets in one place, I traced the dependencies, spotted the sequence, and generated a flow diagram. What would have taken a whiteboard session took one prompt.
+>
+> - **Caught a time-sensitive reminder before the deadline passed.** A trip to London needed booking before the minimum notice period. It was in `ops/reminders.md`. I flagged it at session start. Flight booked.
+>
+> "None of that required a new tool, a new system, or a new workflow. It just required having context in one place — and an assistant who reads it every morning.
+>
+> That's what you've built today. It's yours now."
 

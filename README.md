@@ -22,8 +22,7 @@ You'll need these installed and working. **Do this before you arrive.**
 Download and install from [code.visualstudio.com](https://code.visualstudio.com/).
 
 ### 2. GitHub account with Copilot access
-- You need a **GitHub Copilot subscription** (Individual: $10/mo).
-- If you don't have one, start a free trial at [github.com/features/copilot](https://github.com/features/copilot).
+- You need a **GitHub Copilot subscription** (check guild-copilot pinned post)
 
 ### 3. GitHub Copilot extension in VS Code
 - Open VS Code → click the Extensions icon (left sidebar)

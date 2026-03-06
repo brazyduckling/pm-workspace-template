@@ -16,7 +16,9 @@ A boilerplate repo that turns VS Code + GitHub Copilot into a persistent, struct
 
 The core problem it solves: AI assistants (ChatGPT, Copilot, Gemini) forget everything between sessions. You end up re-explaining context every time. This template gives Copilot a folder it can read as memory. Every meeting note, decision, PRD, and task you save is permanently indexed and available in every future conversation.
 
-The system is entirely local. Files live on your machine. Nothing is synced to a server or stored outside the folder.
+**On local storage:** The markdown files live on your machine. There is no automatic cloud sync, no third-party storage of the files themselves, and no background upload.
+
+**On Copilot and data privacy:** Copilot is a cloud service. When you use `@workspace`, VS Code builds a local index of your files — but when you send a message, it includes relevant file snippets in the prompt that gets sent to GitHub's servers (backed by Azure OpenAI) for inference. File content can therefore leave your machine as part of a Copilot query, the same way any message you type into Copilot Chat does. With a **Copilot Business or Enterprise** licence, GitHub does not use your prompts or completions to train models. With an **Individual** licence, you can opt out in GitHub settings under "Copilot" → "Suggestions matching public code" and the data usage settings. Avoid pasting highly sensitive material (passwords, PII, confidential financials) until you've verified your licence terms.
 
 ---
 

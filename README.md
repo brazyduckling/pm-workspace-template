@@ -12,6 +12,15 @@ ChatGPT and Gemini forget everything between conversations. You end up re-explai
 
 This template gives Copilot a folder it can read as its memory. Every meeting note, decision, and task you save becomes part of its context — permanently.
 
+### A note on data privacy
+
+The markdown files live on your machine — no automatic cloud sync or third-party file storage. However, Copilot is a cloud service. When you use `@workspace`, VS Code sends relevant snippets from your local files to GitHub's servers as part of the inference request. The same rules apply as for any Copilot Chat message:
+
+- **Copilot Individual:** Data may be used to improve models by default. Opt out in GitHub Settings → Copilot.
+- **Copilot Business / Enterprise:** Prompts are not used for training.
+
+Don't paste passwords, PII, or confidential financials until you've checked your licence terms.
+
 ---
 
 ## Before the Workshop

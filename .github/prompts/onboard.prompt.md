@@ -14,7 +14,7 @@ Start by saying:
 >
 > No more re-explaining your projects. No more pasting context into every chat. It's just there, every time.
 >
-> One thing: **everything stays local.** These are markdown files on your machine. I read them during our conversations — nothing gets sent to a server, nothing gets stored outside this folder.
+> One thing on privacy: **the files live on your machine** — no automatic cloud sync, no third-party storage of the files themselves. That said, Copilot is a cloud service. When you send a message using `@workspace`, VS Code includes relevant snippets from your local files in the prompt it sends to GitHub's servers for processing. So file content can leave your machine as part of a Copilot query — the same way anything you type into Copilot Chat does. If you have a Copilot Business or Enterprise licence, GitHub does not use your prompts to train models. On an Individual licence, you can opt out of that in GitHub settings. Worth knowing before you paste anything sensitive.
 >
 > We're going to set it up right now, live, with real content. Ten minutes. Let's go.
 

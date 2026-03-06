@@ -3,70 +3,63 @@
 Use this as sample input for the `/onboard` wizard if you don't have your own meeting notes handy.
 
 ---
+Meeting: 🚨 URGENT: "Where's my Food" / Driver Tracker
+Date: March 6, 2026
+Platform: Google Meet
+Participants: 6 (Sarah, Dave, Meera, Josh, Marcus, +1)
 
-**Meeting: [URGENT] Checkout "Sticky Cart" vs. "Fast-Track" Logic Sync**
-**Date:** March 6, 2026
-**Time:** 10:00 AM – 10:30 AM
-**Participants:** Sarah (Product Manager - Core UX), Dave (Senior Engineer - Backend/APIs), Meera (Lead Designer), Josh (Marketing/Growth), Marcus (QA/Testing)
+[00:00:12] Sarah: Is everyone in? I can’t see Meera. Oh, there you are. Okay, look, the Support Slack is blowing up. Ever since the v4.2 push, the "Where is my driver?" button is basically a random number generator.
 
----
+[00:01:05] Josh: It’s worse than that. I just tried to order a burrito and the map showed my driver in the middle of the Atlantic Ocean. Like, off the coast of Africa.
 
-[00:00:01] Sarah: Okay, can everyone hear me? I'm at the airport so sorry if there's an announcement. We need to lock the logic for the "Hungry Now" button before the sprint ends tonight.
+[00:01:45] Dave: (Chewing) Sorry, finishing lunch. That’s a coordinate flip. The new API is swapping latitude and longitude for certain Android builds. It’s an easy fix, but—
 
-[00:01:15] Dave: Wait, I thought we were calling it "Express Checkout"? The API docs I wrote last night say POST /v1/express-track. If we change the name again, the frontend hooks are going to break.
+[00:02:15] Meera: It’s not just the coordinates, Dave. The button itself is disappearing. If a user backgrounds the app to check TikTok and comes back, the "Track Driver" button just... vanishes. They have to kill the app to see where their pizza is.
 
-[00:02:10] Meera: It's "Hungry Now" in the UI. Marketing insisted. Josh?
+[00:03:40] Sarah: Wait, why is it vanishing? Meera, is that the new "Minimalist Overlay" you guys pushed?
 
-[00:02:22] Josh: Yeah, "Express" felt too much like a shipping thing. "Hungry Now" tested 14% better in the London focus groups. But Sarah, did we decide if it bypasses the "Do you want a side of garlic bread?" cross-sell? Because if it does, the average order value (AOV) is going to tank.
+[00:04:10] Meera: No! Don't pin that on Design. We specifically said the button should stay pinned to the bottom nav. But Marcus said the "Live Activity" widget was conflicting with the in-app button.
 
-[00:04:05] Sarah: That's the mess. If it's a "fast-track," it has to be fast. If we pop up three modals asking about dips and drinks, it's just the normal checkout with a different colored button.
+[00:05:22] Marcus: (Heavy interference/wind noise) Can you hear me? I’m walking to the lab. Yeah, the Live Activity is hogging the refresh token. So when the app comes back to the foreground, the API thinks the session is dead. It’s not "vanishing," it’s failing to authenticate.
 
-[00:05:30] Marcus: Hey guys, jumping in — I found a bug in the staging build. If a user has an expired credit card but clicks "Hungry Now," the app just spins forever. It doesn't redirect to the payment update page. It just... hangs.
+[00:06:55] Josh: Guys, customers don't care about "refresh tokens." They care that they spent £40 on Thai food and now they’re staring at a blank home screen. Our "Where is my driver" CSAT score dropped from 4.8 to 1.2 in three hours.
 
-[00:06:45] Dave: That's because the fast-track endpoint assumes a valid payment_token is present. It doesn't have an error handler for 402 Payment Required. I can fix it, but I'll need another two hours.
+[00:08:15] Sarah: Okay, stop. Dave, can we just roll back to the old "Where is my driver" logic? The one that just showed the static map?
 
-[00:08:12] Meera: Also, Sarah, look at the Figma link I just sent. If the user is ordering from a place with "Customizable Toppings" (like a pizza place), the "Hungry Now" button is overlapping the "Add Extra Cheese" toggle. It looks like a total mess on iPhone SE screens.
+[00:08:45] Dave: I mean, I could, but we’d lose the "Estimated Time to Door" (ETD) logic. And the old map didn't show if the driver was on a bike or a car. Remember how much Marketing complained about "misleading vehicle icons"?
 
-[00:10:00] Sarah: Ugh, the SE users. Okay, can we hide the button if the screen height is below a certain pixel count?
+[00:10:05] Josh: (Sighs) If the choice is "Wrong Icon" or "Atlantic Ocean," I choose the wrong icon.
 
-[00:11:15] Josh: No way. A huge chunk of our late-night student demographic uses older iPhones. We can't cut them out of the "fast" experience. They're the ones most likely to use it!
+[00:11:30] Meera: Also, I just noticed something in the Figma. Who changed the button color to light gray? It looks like it’s disabled. I’ve had three DMs from the UX researchers saying people aren’t even clicking it because they think it’s broken.
 
-[00:13:00] Dave: Can we go back to the "Sticky Cart" logic? If they have stuff in their cart from yesterday, and they hit "Hungry Now" on a new restaurant, what happens? Do we clear the old cart? Or merge them? Because we can't do multi-restaurant delivery yet.
+[00:12:45] Sarah: I thought we changed it to "Ghost Grey" to match the "Order History" page?
 
-[00:14:20] Sarah: It should definitely clear the old cart.
+[00:13:10] Meera: No! It’s an action button. It needs to be "Hunger Orange." If it’s gray, it looks like the driver hasn’t even picked up the food yet.
 
-[00:14:35] Meera: Wait, if I'm halfway through a £50 family order and I accidentally tap "Hungry Now" on a burger place, I lose my whole cart? I'd delete the app.
+[00:15:20] Marcus: (Sound of a door slamming) Okay, I’m in the lab. I’m looking at the logs. It’s not just Android. iOS is also failing because of the "Driver Chat" integration. If the driver sends a message like "I'm outside," it blocks the map view.
 
-[00:16:00] Josh: We need a "Are you sure?" modal.
+[00:16:45] Sarah: You’re kidding. So they get the food, but they can’t see the map to know it’s there?
 
-[00:16:15] Sarah: NO. No more modals! The whole point of this feature is one-tap ordering. If we add an "Are you sure?" modal, we've just invented a very expensive "Checkout" button.
+[00:17:10] Marcus: Basically. The "Where is my driver" button is being hidden by the "Chat" notification, and the notification won't swipe away.
 
-[00:18:45] Marcus: Guys, I'm still seeing the spinning wheel on the expired card thing. Dave, did you push the fix to dev-3?
+[00:19:00] Dave: That’s because the z-index on the chat modal is set to 9999. I told the frontend guys that was a bad idea.
 
-[00:19:00] Dave: No, Marcus, I'm in this meeting. I can't code and talk at the same time. Also, Sarah, the legal team sent an email — apparently, we need to show the delivery fee before the tap. We can't just hide it until the receipt.
+[00:20:30] Sarah: (Background noise of a dog barking) Quiet, Buster! Okay, look. We have 10 minutes before the CTO asks for an update. Dave, fix the Lat/Long flip. Meera, send Marcus the hex code for the orange button—DO NOT use gray. Marcus, can we just kill the chat integration for today? Just hide the chat feature until we fix the map?
 
-[00:21:10] Sarah: (Heavy sigh) Okay, so we need: the button to show the total price including fees, a way to handle expired cards without a "hang," a solution for the overlapping UI on small screens, and a decision on the "Clear Cart" catastrophe.
+[00:22:15] Josh: If we kill chat, how do they tell the driver the doorbell is broken? We’ll get a surge in "Order Not Delivered" tickets.
 
-[00:23:30] Meera: What if the "Hungry Now" button only appears after you've selected your main items? Like, it replaces the "Go to Cart" button?
+[00:23:45] Sarah: Then we’re screwed either way.
 
-[00:24:50] Josh: That defeats the purpose. The "Hungry Now" should be on the home screen for "The Usual" order. Like, "Tap here to get your Friday Night Pad Thai."
+[00:25:00] Meera: Wait, I have an idea. Can we just put a giant "Call Driver" button at the top? If the map is broken, at least they can talk to a human.
 
-[00:26:15] Dave: If we're doing "The Usual" from the home screen, that's a completely different API. That's a reorder logic, not a checkout logic. We haven't even scoped that.
+[00:26:30] Dave: No. GDPR. We use an anonymized VoIP bridge. If I try to spin that up now, the whole "Where is my driver" system will crash the auth server.
 
-[00:27:40] Sarah: Okay, we're spiraling. We have 2 minutes. Here's the deal:
+[00:27:50] Marcus: I’m seeing a spike in "App Not Responding" errors. I think everyone is refreshing the map at the same time because it’s not updating.
 
-Dave: Fix the 402 error hang. Just redirect to the standard checkout if the payment fails.
+[00:28:40] Sarah: Great. We’re DDOS-ing ourselves.
 
-Meera: Shrink the button padding for SE users. Don't hide it.
+[00:29:15] Sarah: Okay, new plan. Dave, hotfix the coordinates ONLY. Marcus, force-refresh the map every 30 seconds instead of every 5 to save the server. Josh, tell Support to send a generic "We’re having map issues" push notification so people stop clicking the button.
 
-Josh: We're keeping the cross-sells for now, but only ONE. Pick the best one.
+[00:30:05] Dave: I’ll try, but no promises on the Atlantic Ocean thing for another hour.
 
-Sarah (Me): I will talk to Legal about the "Price on Button" requirement.
-
-[00:29:10] Marcus: And the cart clearing thing?
-
-[00:29:45] Sarah: If they have a cart already, the "Hungry Now" button turns into "View Cart." We don't clear anything. It's safer.
-
-[00:30:00] Dave: That's going to take until Tuesday.
-
-[00:30:15] Sarah: Make it happen by Monday. Bye everyone, they're calling my group for boarding.
+[00:30:25] Sarah: I have another meeting. Just... make the button orange. Please.

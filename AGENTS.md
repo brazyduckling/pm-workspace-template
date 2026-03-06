@@ -1,5 +1,5 @@
 # AGENTS.md
-<!-- Last updated: [DATE] -->
+<!-- Last updated: 06 Mar 2026 -->
 
 ## Who I Am
 
@@ -57,6 +57,8 @@
 ## Navigation
 
 Start at `docs/index.md` — it links to all project MOCs and ops files.
+
+`docs/general/design-decisions.md` is a reference doc. Read it only for meta-questions about how or why the workspace template is designed, not for normal daily session execution.
 
 ### Adding a New Project
 
@@ -117,3 +119,4 @@ Protocol:
 2. MOCs reduce search cost and keep context discoverable.
 3. Wikilinks encode relationships across notes.
 4. Regular maintenance prevents drift.
+5. Full rationale and trade-offs live in `docs/general/design-decisions.md` (meta reference).

@@ -94,6 +94,8 @@ The core problem it solves: AI assistants (ChatGPT, Copilot, Gemini) forget ever
 
 **Why:** A template with 10+ prompts requires the user to understand each one before they can start. Four prompts cover the full lifecycle (setup → daily start → daily end → health check) without overwhelming a new user. Additional prompts are left to the user to create — AGENTS.md instructs them to add `.prompt.md` files for any repeated task.
 
+**Scope update:** `/onboard` was later restructured into: Orientation → transcript processing → prompt extension → personalisation → tone selection. Prompt count stayed the same (`/onboard`, `/session-start`, `/session-end`, `/audit`); only onboarding sequence changed.
+
 **Prompts that were cut during design:**
 - `/distill` — extracting decisions from notes. Merged into the `/session-end` inbox processing flow.
 - `/connect` — finding links between notes. Cut because it requires human judgment on which links are meaningful; it can't be reliably automated.
@@ -102,17 +104,20 @@ The core problem it solves: AI assistants (ChatGPT, Copilot, Gemini) forget ever
 
 ---
 
-### 8. `/onboard` as an interactive demo, not a form
+### 8. `/onboard` as an interactive walkthrough: orient first, then action
 
-**Decision:** The onboarding prompt is a live walkthrough that processes a real transcript during setup, rather than asking the user to fill in fields.
+**Decision:** The onboarding prompt starts with a short orientation to the folder model, then runs a live transcript workflow, then teaches prompt extension, then captures personal context and tone.
 
-**Why:** Filling in configuration fields (company, goals, domain) is boring and gives the user no intuition for how the system works. Processing a transcript live — seeing it turn into structured notes, filed in the right folder, added to the task list — demonstrates the entire value proposition in one operation. The user leaves onboarding having already used the system.
+**Why:** Pure action-first works well in live demos, but a boilerplate must also work for people onboarding alone without a call or recording. A 60-second map of the structure first (`docs/`, `ops/`, `inbox/`, MOCs, wikilinks, session rhythm) gives enough context for the transcript demo to make sense. Then the user sees immediate value, learns how to extend the system with custom prompts, and only then personalises it.
 
 **Phases of the onboarding:**
-1. Process a transcript (demo the core mechanic)
-2. Preview the PRD flow (show how it generalises)
-3. Fill personal context (make the agent useful for this specific user)
-4. Pick agent tone (set a working preference that persists)
+1. Orient to folder structure and information flow
+2. Process a transcript (demo the core mechanic)
+3. Add/preview custom prompt creation (`.github/prompts/*.prompt.md`)
+4. Fill personal context (make the agent useful for this specific user)
+5. Pick agent tone (set a working preference that persists)
+
+**What was removed:** The PRD mini-demo step was cut from onboarding to keep setup concise. PRD routing is still documented and follows the same mechanics (`docs/<project>/prds/` + MOC indexing).
 
 **Transcript source:** The user can use the included example (`examples/example-meeting-transcript.md`) or paste their own. The example is a realistic customer portal redesign stakeholder meeting — specific enough to produce real output (decisions, owners, timeline) without being tied to any real company.
 
@@ -156,6 +161,18 @@ The core problem it solves: AI assistants (ChatGPT, Copilot, Gemini) forget ever
 **Earlier version:** AGENTS.md contained a full "Knowledge Graph" table listing every MOC with links. This was removed.
 
 **Why removed:** The table duplicated information that already lived in `docs/index.md`. Two places meant two things to keep in sync, and one could drift. The one-liner pointer eliminates the duplication while keeping AGENTS.md as the definitive instruction file.
+
+---
+
+### 13. GitHub CLI as the default clone path
+
+**Decision:** The README defaults to cloning with GitHub CLI (`gh repo clone`) and keeps HTTPS as fallback, with SSH setup in an optional section.
+
+**Why:** HTTPS-first can fail for beginners when Git Credential Manager is missing (common on macOS setups using Xcode Command Line Tools git), which leads to confusing username/password prompts. SSH-first is robust but requires key generation and GitHub key setup before first use. `gh auth login` + `gh repo clone` gives a clean browser OAuth flow with fewer failure points for first-time PM users.
+
+**Fallbacks:**
+- HTTPS remains available for users who prefer plain Git.
+- SSH remains available as an advanced path, documented behind a collapsible section.
 
 ---
 

@@ -41,6 +41,15 @@ Download and install from [code.visualstudio.com](https://code.visualstudio.com/
 ### 4. Git
 Download from [git-scm.com](https://git-scm.com/downloads). Most Macs already have it — run `git --version` in Terminal to check.
 
+### 5. GitHub CLI (`gh`)
+Install from [cli.github.com](https://cli.github.com/) or with Homebrew:
+
+```bash
+brew install gh
+```
+
+`gh` gives a simpler auth flow for first-time setup.
+
 ### Verify it's all working
 1. Open VS Code
 2. Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows)
@@ -55,21 +64,73 @@ If the chat panel opens, you're ready.
 **Step 1 — Fork this repo**
 Click the **Fork** button at the top of this page. This creates your own copy to customize.
 
-**Step 2 — Clone it to your computer**
+**Step 2 — Authenticate GitHub CLI (one-time)**
 ```bash
-git clone https://github.com/<your-username>/pm-workspace-template
+gh auth login
 ```
 
-**Step 3 — Open in VS Code**
+Follow the prompts and complete sign-in in your browser.
+
+**Step 3 — Clone it to your computer (recommended)**
+```bash
+gh repo clone <your-username>/pm-workspace-template
+```
+
+If you prefer plain Git over `gh`, use HTTPS:
+
+```bash
+git clone https://github.com/<your-username>/pm-workspace-template.git
+```
+
+<details>
+<summary>Optional: SSH clone and key setup</summary>
+
+If you prefer SSH, first create a key and add it to GitHub.
+
+Generate a new key:
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+Start the ssh-agent:
+
+```bash
+eval "$(ssh-agent -s)"
+```
+
+Add the key:
+
+```bash
+ssh-add ~/.ssh/id_ed25519
+```
+
+Copy the public key and add it in GitHub:
+
+```bash
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+GitHub path: Settings -> SSH and GPG keys -> New SSH key.
+
+Then clone with SSH:
+
+```bash
+git clone git@github.com:<your-username>/pm-workspace-template.git
+```
+
+</details>
+
+**Step 4 — Open in VS Code**
 Open VS Code → `File → Open Folder` → select the folder you just cloned.
 
-**Step 4 — Run the setup wizard**
+**Step 5 — Run the setup wizard**
 Open Copilot Chat (`Cmd+Shift+I` or click the Copilot icon in the sidebar) and type:
 ```
 @workspace /onboard
 ```
 
-The wizard will guide you through everything interactively — paste a meeting transcript, see how it gets routed and indexed, then fill in your personal and org context.
+The wizard will guide you through everything interactively — quick orientation, meeting-note processing demo, prompt extension, and personal setup.
 
 ---
 

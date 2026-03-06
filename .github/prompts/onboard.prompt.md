@@ -18,7 +18,31 @@ Start by saying:
 >
 > We're going to set it up right now, live, with real content. Ten minutes. Let's go.
 
-## Phase 1 — Process Your First Meeting Notes
+## Phase 1 — Orient (Quick Map)
+
+Say:
+
+> "Before we run anything, here's the map so what follows makes sense."
+>
+> "`AGENTS.md` is my instruction manual. It tells me how to behave and where things go."
+>
+> "`docs/` is permanent knowledge. That's where meeting notes, decisions, and PRDs live."
+>
+> "`ops/` is working state. That's your active `tasks.md` and `reminders.md`, read every session."
+>
+> "`inbox/` is a staging area for raw input. If you drop messy notes there, I can route them later."
+>
+> "I navigate through MOCs (Map of Content files), not by blindly scanning folders."
+>
+> "Internal links use `[[wikilinks]]`, so notes become a connected graph I can follow."
+>
+> "Your hub is `docs/index.md`. It links to project MOCs. Project MOCs link to project documents."
+>
+> "Daily rhythm is simple: `/session-start` in the morning, work during the day, `/session-end` before you stop."
+>
+> "Now let's make this real with one transcript so you can see the full flow end to end."
+
+## Phase 2 — Process Your First Meeting Notes
 
 Say:
 
@@ -82,17 +106,41 @@ Wait for confirmation, then:
    >
    > Every future session, I know this conversation happened. That's the whole thing. That's what this system does."
 
-## Phase 2 — PRD Flow (Quick)
+## Phase 3 — Add Your First Custom Prompt
 
 Say:
 
-> "Same system, different folder. PRDs go to `docs/<project>/prds/`. MOC tracks them separately. You can link a PRD back to the meeting that created it — full traceable thread from conversation to spec."
+> "Now one extension step so you can adapt this to your own workflow."
+>
+> "Prompt files live in `.github/prompts/`. Every `.prompt.md` file there becomes a new `@workspace /command`."
+>
+> "Here is the minimal pattern:"
 
-Ask: "Want to run a PRD through it now, or keep moving?"
+```markdown
+---
+description: "What this prompt does"
+---
 
-If yes, same confirm-first flow. If no, move on.
+# Prompt Name
 
-## Phase 3 — Tell Me About You
+Short instruction block for the agent.
+```
+
+Then say:
+
+> "Think of one repeated task you do weekly: status update, ticket draft, stakeholder brief."
+>
+> "If you want, I can scaffold your first custom prompt now. If not, keep moving and create it later."
+
+If the user wants to create one now:
+1. Ask for prompt name, description, and target repeated task.
+2. Show proposed file path in `.github/prompts/`.
+3. Show proposed content.
+4. Ask for confirmation before creating.
+
+If the user does not want to create one now, continue directly.
+
+## Phase 4 — Tell Me About You (Final Setup)
 
 Say:
 
@@ -109,6 +157,8 @@ Show the full proposed `docs/general/personal-context.md`. Ask: "Save this?"
 
 Wait for confirmation before saving.
 
+Then immediately continue to tone selection as part of this final personalisation block.
+
 ## Closing
 
 List every file created during setup.
@@ -123,15 +173,13 @@ Then say:
 > | `@workspace /session-end` | Updates tasks, processes inbox, makes sure everything is indexed |
 > | `@workspace /audit` | Structural check — missing MOCs, orphan docs, broken links |
 >
-> **You can build your own.** Drop a `.prompt.md` in `.github/prompts/` and it becomes a new `@workspace /command`. Weekly update, ticket draft, stakeholder brief — whatever you do repeatedly, make a prompt for it.
->
 > **Only rule:** I know what's in this folder. Nothing else. Meeting notes, Slack threads, research — drop it in `inbox/` or paste it into chat. That's how you feed me context.
 >
 > This is your system. Use it.
 
 ---
 
-## Final Step — Pick Your Agent Tone
+## Phase 4b — Pick Your Agent Tone
 
 Say:
 

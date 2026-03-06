@@ -6,6 +6,8 @@ description: "Interactive first-time onboarding — learn how the workspace work
 
 **IMPORTANT:** This is an interactive walkthrough. **Do not create, modify, or save any file until the user explicitly confirms.** At every step, show proposed changes and ask for permission.
 
+**DISPLAY RULE:** Whenever you show the user proposed file content, file paths, MOC entries, task list additions, or hub updates, wrap them in a markdown code block so they render as a preview — NOT as executed output. This prevents Copilot from accidentally editing files while showing what it *would* do.
+
 Start by saying:
 
 > **Okay. I'm going to show you something.**
@@ -85,29 +87,46 @@ Then:
 
 1. Ask: "What project does this belong to? Short name — like `customer-portal` or `q2-roadmap`."
 
-2. Show the exact file path you'd save to:
-   > `docs/<project>/notes/YYYY-MM-DD-<topic>.md`
-   >
-   > This goes into the project's drawer in the filing cabinet. Date prefix keeps things in order.
+2. Show the exact file path and proposed content in a code block:
+
+   Say: "This goes into the project's drawer in the filing cabinet. Date prefix keeps things in order."
+
+   Show the file path and a preview of the content inside a code block:
+   > ```
+   > File: docs/<project>/notes/YYYY-MM-DD-<topic>.md
+   > ```
 
    Ask: "Create this file?"
 
-3. Show the project MOC (Map of Content) you'd create:
-   > `docs/<project>/<project>-moc.md`
-   >
-   > This is the index card for this drawer. Every document in the project gets listed here with a `[[wikilink]]` and a one-liner. Next time I open this drawer, I read the MOC first — I instantly know what's inside without digging through files.
+3. Show the project MOC (Map of Content) you'd create in a code block:
 
-   Show the entry: `- [[YYYY-MM-DD-<topic>]] — <one-line description>`
+   Say: "This is the index card for this drawer. Every document in the project gets listed here with a `[[wikilink]]` and a one-liner. Next time I open this drawer, I read the MOC first — I instantly know what's inside without digging through files."
+
+   Show the MOC path and the entry inside a code block:
+   > ```
+   > File: docs/<project>/<project>-moc.md
+   >
+   > - [[YYYY-MM-DD-<topic>]] — <one-line description>
+   > ```
 
    Ask: "Create the MOC?"
 
-4. If there are action items, show what you'd add to `ops/tasks.md`:
-   > These go on the desk. First thing I check every morning — all tasks, all projects, one place.
+4. If there are action items, show what you'd add to `ops/tasks.md` in a code block:
+
+   Say: "These go on the desk. First thing I check every morning — all tasks, all projects, one place."
+
+   Show the proposed task entries inside a code block.
 
    Ask: "Add these tasks?"
 
-5. Show the hub update:
-   > One line in `docs/index.md` — the office directory. Without this entry, the project drawer doesn't exist to me.
+5. Show the hub update in a code block:
+
+   Say: "One line in `docs/index.md` — the office directory. Without this entry, the project drawer doesn't exist to me."
+
+   Show the proposed line inside a code block:
+   > ```
+   > - [[<project>-moc]] — <one-line description>
+   > ```
 
    Ask: "Add it?"
 
@@ -157,24 +176,7 @@ Then:
   - Hype machine: "Done. Let's build something."
 - Ask for confirmation before saving.
 
-## Phase 4 — Tell Me About You
-
-Say:
-
-> "Now let's make the office yours. Five quick questions so I have context."
-
-Ask one by one, waiting for each answer:
-1. "Job title. Where do you work?"
-2. "What team or domain are you in?"
-3. "Who's your manager?"
-4. "Top 1–3 goals for the next few months?"
-5. "How do you work? Fast-paced, async-first, whatever's true."
-
-Show the full proposed `docs/general/personal-context.md`. Ask: "Save this?"
-
-Wait for confirmation before saving.
-
-## Phase 5 — Add Your First Custom Prompt
+## Phase 4 — Add Your First Custom Prompt
 
 Say:
 
@@ -227,6 +229,7 @@ Then say:
 > | `/session-start` | Opens the office. I check the desk (tasks + reminders), tell you what's happening, ask what to work on. |
 > | `/session-end` | Closes the office. I update tasks, clear the in-tray, make sure every new file is indexed in its MOC (Map of Content). |
 > | `/audit` | Office inspection. Checks for misfiled documents — missing MOCs, orphan files not linked from any index, broken wikilinks. |
+> | `/personalize` | Tell me about you — role, team, goals, working style. Makes my output relevant to your actual job. Run this whenever you're ready. |
 >
 > "If you ever want to understand *why* the office is set up this way — what each design choice does and how the pieces fit together — read `docs/general/design-decisions.md`. It's the full blueprint."
 >

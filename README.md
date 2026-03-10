@@ -23,7 +23,7 @@ Don't paste passwords, PII, or confidential financials until you've checked your
 
 ---
 
-## Before the Workshop
+## Before Running the Agent
 
 You'll need these installed and working. **Do this before you arrive.**
 

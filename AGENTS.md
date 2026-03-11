@@ -1,5 +1,5 @@
 # AGENTS.md
-<!-- Last updated: 06 Mar 2026 -->
+<!-- Last updated: 10 Mar 2026 -->
 
 ## Who I Am
 
@@ -27,19 +27,19 @@
 3. **Suggest next steps.** End with practical next actions.
 4. **MOC-first navigation.** Read MOCs first, then follow `[[wikilinks]]` as needed.
 5. **Maintain indexes.** After creating/updating files in `docs/`, update the relevant MOC.
-6. **Inbox-first capture.** Raw content goes to `inbox/` first. Direct updates allowed only for `ops/tasks.md` and `ops/reminders.md`.
+6. **Inbox-first capture.** Raw content goes to `inbox/` first. Direct updates allowed only for `ops/tasks.md`, `ops/reminders.md`, and `ops/open-questions.md`.
 
 ### Session Rhythm
 
 1. **Orient** (`@workspace /session-start`)
-   - Read `ops/tasks.md` and `ops/reminders.md`
+   - Read `ops/tasks.md`, `ops/reminders.md`, and `ops/open-questions.md`
    - Summarize status and ask what to work on
 2. **Work**
    - Capture raw content in `inbox/`
-   - Process and route to permanent locations
+   - Run `@workspace /process` to extract tasks, reminders, and open questions, then route content to permanent locations
 3. **Persist** (`@workspace /session-end`)
    - Update tasks and reminders
-   - Route inbox files
+   - Process remaining inbox files (extract ops signals, then route)
    - Update MOCs
 
 ### Memory Type Routing
@@ -47,10 +47,10 @@
 | What you captured | Where it goes |
 |---|---|
 | Meeting notes | `docs/<project>/meeting-notes/` |
-| Decision | `docs/<project>/decisions/` |
 | PRD or spec | `docs/<project>/prds/` |
 | Task / action item | `ops/tasks.md` |
 | Time-bound follow-up | `ops/reminders.md` |
+| Open question | `ops/open-questions.md` |
 | Raw unprocessed input | `inbox/` |
 | Cross-project / org context | `docs/general/` |
 
@@ -64,7 +64,7 @@ Start at `docs/index.md` — it links to all project MOCs and ops files.
 
 1. Create `docs/<project-name>/` and `<project-name>-moc.md`
 2. Add the MOC to `docs/index.md`
-3. Route docs by type (`meeting-notes/`, `decisions/`, `prds/`)
+3. Route docs by type (`meeting-notes/`, `prds/`)
 
 ## Conventions
 
@@ -111,7 +111,9 @@ Protocol:
 | `/onboard` | Interactive first-time onboarding |
 | `/session-start` | Daily orient flow |
 | `/session-end` | Daily persist/cleanup flow |
+| `/process` | Extract tasks, reminders, and open questions from inbox files, then route to permanent locations |
 | `/audit` | Structure and indexing audit |
+| `/personalize` | Set personal context — role, team, goals, working style |
 
 ## Design Philosophy
 

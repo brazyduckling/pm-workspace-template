@@ -26,6 +26,7 @@ description: "Audit workspace structure — MOC coverage, orphans, dead links, a
 
 ### 5) Hub Sync
 - Verify `docs/index.md` includes all project MOCs
+- Verify `docs/index.md` lists all ops/ files (`tasks`, `reminders`, `open-questions`)
 - Report missing hub links
 
 ### 6) Frontmatter Completeness

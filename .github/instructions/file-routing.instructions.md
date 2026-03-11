@@ -11,11 +11,11 @@ applyTo: "docs/**"
 | Content type | Destination |
 |---|---|
 | Meeting notes | `docs/<project>/meeting-notes/` |
-| Decision | `docs/<project>/decisions/` |
 | PRD or spec | `docs/<project>/prds/` |
 | Cross-project / org context | `docs/general/` |
 | Task | `ops/tasks.md` (append) |
 | Reminder | `ops/reminders.md` (append) |
+| Open question | `ops/open-questions.md` (append) |
 | Raw unprocessed input | `inbox/` |
 | MOC (index) | `docs/<folder>/<folder>-moc.md` |
 
@@ -31,12 +31,12 @@ docs/
 └── <project-name>/
     ├── <project-name>-moc.md
     ├── meeting-notes/
-    ├── decisions/
     └── prds/
 
 ops/
 ├── tasks.md
-└── reminders.md
+├── reminders.md
+└── open-questions.md
 
 inbox/
 ```
@@ -48,7 +48,7 @@ Directories are created on first use.
 | Type | Pattern | Example |
 |---|---|---|
 | Meeting notes | `YYYY-MM-DD-topic-slug.md` | `2026-03-04-kickoff-sync.md` |
-| PRDs, decisions, other | `descriptive-slug.md` | `payment-flow-prd.md` |
+| PRDs, other | `descriptive-slug.md` | `payment-flow-prd.md` |
 
 ## New Project Creation
 

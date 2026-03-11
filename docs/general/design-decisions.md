@@ -1,6 +1,8 @@
 ---
 title: "PM Workspace Template — Design Decisions & Manual"
 description: "Why the template is built the way it is, and how every part of it works"
+date: 04 Mar 2026
+status: approved
 topics: ["meta", "design", "architecture"]
 ---
 
@@ -68,9 +70,11 @@ The core problem it solves: AI assistants (ChatGPT, Copilot, Gemini) forget ever
 
 ### 5. Separate `ops/` from `docs/`
 
-**Decision:** Working memory (`tasks.md`, `reminders.md`) lives in `ops/`, not inside any project folder.
+**Decision:** Working memory (`tasks.md`, `reminders.md`, `open-questions.md`) lives in `ops/`, not inside any project folder.
 
-**Why:** Tasks and reminders are cross-cutting. An action item from a payment domain meeting should live in the same task list as one from a courier project. If tasks were inside project folders, the agent would need to search multiple files to get a full picture. `ops/tasks.md` is always the first file read in `/session-start` — it provides a complete view of what's active, regardless of domain.
+**Why:** Tasks, reminders, and open questions are cross-cutting. An action item from a payment domain meeting should live in the same task list as one from a courier project. If these were inside project folders, the agent would need to search multiple files to get a full picture. `ops/` is always the first directory read in `/session-start` — it provides a complete view of what's active, regardless of domain.
+
+**Why open questions are in `ops/`, not `docs/`:** Open questions are working state — they change constantly, most resolve within days, and they need tracking. Putting them in `docs/<project>/` would violate the template's own rule: `ops/` is for working state that changes frequently, `docs/` is for permanent knowledge that's stable and indexed.
 
 **What goes in `ops/` vs `docs/`:**
 - `ops/` = working state (changes frequently, read every session, not indexed in MOCs)
@@ -88,19 +92,20 @@ The core problem it solves: AI assistants (ChatGPT, Copilot, Gemini) forget ever
 
 ---
 
-### 7. Five core prompts
+### 7. Six core prompts
 
-**Decision:** The template ships with five prompts: `/onboard`, `/session-start`, `/session-end`, `/audit`, `/personalize`.
+**Decision:** The template ships with six prompts: `/onboard`, `/session-start`, `/session-end`, `/process`, `/audit`, `/personalize`.
 
-**Why:** A template with 10+ prompts requires the user to understand each one before they can start. Five prompts cover the full lifecycle (setup → daily start → daily end → health check → personal context) without overwhelming a new user. Additional prompts are left to the user to create — AGENTS.md instructs them to add `.prompt.md` files for any repeated task.
+**Why:** Six prompts cover the full lifecycle (setup → daily start → mid-day processing → daily end → health check → personal context) without overwhelming a new user. Additional prompts are left to the user to create — AGENTS.md instructs them to add `.prompt.md` files for any repeated task.
+
+**Why `/process` exists separately from `/session-end`:** `/session-end` processes all inbox files as part of the end-of-day cleanup. `/process` lets users process specific inbox files mid-day without waiting. Both follow the same logic: extract operational signals (tasks, reminders, open questions) to `ops/`, then route content to its permanent `docs/` location.
 
 **Why `/personalize` is separate from `/onboard`:** Personal context (role, team, goals, working style) is valuable to set up, but not everyone is ready to answer those questions in the middle of a 10-minute onboarding session. Separating it lets users run the wizard first, see value immediately, and personalise when it feels natural — without delaying the transcript demo.
 
 **Prompts that were cut during design:**
-- `/distill` — extracting decisions from notes. Merged into the `/session-end` inbox processing flow.
 - `/connect` — finding links between notes. Cut because it requires human judgment on which links are meaningful; it can't be reliably automated.
 - `/rethink` — challenging assumptions in a document. Useful but not a daily workflow; dropped for scope.
-- `/process-meeting-notes` — dedicated meeting transcript processor. Merged into `/onboard` Phase 1 as the live demo, and into `/session-end` as part of inbox processing.
+- `/process-meeting-notes` — dedicated meeting transcript processor. Merged into `/onboard` Phase 2 as the live demo, and into `/process` and `/session-end` as part of inbox processing.
 
 ---
 
@@ -184,16 +189,16 @@ The core problem it solves: AI assistants (ChatGPT, Copilot, Gemini) forget ever
 Every day follows three phases:
 
 **Morning — `/session-start`**
-The agent reads `ops/tasks.md` and `ops/reminders.md`. It summarises what's active and due, then asks what to work on. The user doesn't need to re-establish context — it's all there.
+The agent reads `ops/tasks.md`, `ops/reminders.md`, and `ops/open-questions.md`. It summarises what's active, what's due, and what questions are unresolved, then asks what to work on. The user doesn't need to re-establish context — it's all there.
 
 **During the day**
-Paste raw content (meeting notes, Slack threads, decisions) directly into Copilot Chat and ask the agent to process it. Or drop files into `inbox/` and process them at the end of the day. Either path produces the same output: structured notes routed to the right project folder, tasks added to `ops/tasks.md`.
+Drop raw content (meeting notes, Slack threads, research) into `inbox/`. When ready to process, run `@workspace /process`. The agent extracts operational signals (tasks, reminders, open questions) to `ops/`, then routes the content to its permanent `docs/` location with proper structure, frontmatter, and MOC indexing. The user can choose to process all inbox files or pick specific ones.
 
 **End of day — `/session-end`**
 The agent:
 1. Updates `ops/tasks.md` (marks completed, adds new items from the session)
 2. Updates `ops/reminders.md` (adds new time-bound items, clears passed ones)
-3. Processes `inbox/` (routes each file to its permanent location, updates relevant MOC, deletes from inbox)
+3. Processes remaining `inbox/` files — for each file, extracts ops signals, then routes to its permanent location. Updates relevant MOC, deletes from inbox.
 4. Verifies MOC coverage (anything created today should be indexed)
 
 ### How the agent navigates
@@ -216,7 +221,7 @@ The agent always:
 4. After saving: adds a `[[wikilink]]` entry to the relevant MOC
 5. If it's a new project: adds the project MOC to `docs/index.md`
 
-This confirm-before-write rule is hardcoded in AGENTS.md and enforced by all four prompts.
+This confirm-before-write rule is hardcoded in AGENTS.md and enforced by all prompts.
 
 ### How context files stay updated
 
@@ -238,6 +243,6 @@ After running `/onboard`, the most impactful customisations:
 
 2. **Create a project prompt.** If you repeatedly draft the same type of document (JIRA tickets, weekly updates, stakeholder briefs), create a `.prompt.md` in `.github/prompts/`. It becomes a new `/command` immediately.
 
-3. **Add your current projects.** If you have existing meeting notes or PRDs you want the system to know about, drop them in `inbox/` and run `/session-end` to route them.
+3. **Add your current projects.** If you have existing meeting notes or PRDs you want the system to know about, drop them in `inbox/` and run `/process` to route them.
 
 4. **Adjust AGENTS.md.** The working principles and routing table in AGENTS.md are starting points. Edit them to match how you actually work.

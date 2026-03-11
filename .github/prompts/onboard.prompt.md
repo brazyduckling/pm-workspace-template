@@ -45,9 +45,9 @@ Then say:
 >
 > "Daily rhythm is three steps:"
 >
-> 1. **Morning** — run `/session-start`. I check the desk — read your tasks and reminders, tell you what's happening.
-> 2. **During the day** — paste content into chat or drop files in the in-tray (`inbox/`).
-> 3. **End of day** — run `/session-end`. I clear the in-tray, update tasks, and make sure everything is filed and indexed.
+> 1. **Morning** — run `/session-start`. I check the desk — read your tasks, reminders, and open questions, tell you what's happening.
+> 2. **During the day** — drop files in the in-tray (`inbox/`). When you're ready, run `/process` — I'll extract tasks, reminders, and open questions, then file the content in the right place.
+> 3. **End of day** — run `/session-end`. I do the same processing for anything still in the in-tray, update tasks, and make sure everything is filed and indexed.
 >
 > "That's the whole office. Now let's make it real."
 
@@ -152,7 +152,9 @@ Then:
    >
    > You'll never need to re-explain this meeting to me. It's in the filing cabinet. It's just there."
    >
-   > "And remember — normally I do all of this automatically without asking at every step. I walked you through it slowly so you could see where everything goes."
+   > "In daily use, you'd run `/process` and I do all of this in one step — extract tasks, reminders, and open questions to the desk, then file the content in the right drawer. `/session-end` does the same thing for anything still in the in-tray at the end of the day."
+   >
+   > "I walked you through it slowly so you could see where everything goes."
 
 ## Phase 3 — Pick Your Agent Tone
 
@@ -226,8 +228,9 @@ Then say:
 >
 > | Command | What it does |
 > |---|---|
-> | `/session-start` | Opens the office. I check the desk (tasks + reminders), tell you what's happening, ask what to work on. |
-> | `/session-end` | Closes the office. I update tasks, clear the in-tray, make sure every new file is indexed in its MOC (Map of Content). |
+> | `/session-start` | Opens the office. I check the desk (tasks, reminders, open questions), tell you what's happening, ask what to work on. |
+> | `/process` | Process the in-tray. I extract tasks, reminders, and open questions to the desk, then file the content in the right drawer. You choose which files to process. |
+> | `/session-end` | Closes the office. Same as `/process` but for everything still in the in-tray, plus updates tasks and verifies all files are indexed. |
 > | `/audit` | Office inspection. Checks for misfiled documents — missing MOCs, orphan files not linked from any index, broken wikilinks. |
 > | `/personalize` | Tell me about you — role, team, goals, working style. Makes my output relevant to your actual job. Run this whenever you're ready. |
 >

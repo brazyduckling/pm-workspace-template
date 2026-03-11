@@ -140,10 +140,14 @@ The wizard will guide you through everything interactively — quick orientation
 ```
 @workspace /session-start
 ```
-Copilot reads your tasks and reminders and tells you what's on your plate.
+Copilot reads your tasks, reminders, and open questions and tells you what's on your plate.
 
 **During the day:**
-Paste raw notes into Copilot Chat and ask it to extract decisions and action items. Or drop files into `inbox/` — they'll get routed when you run session-end.
+Drop files into `inbox/`, then run:
+```
+@workspace /process
+```
+Copilot extracts tasks and open questions to `ops/`, then routes the content to its permanent location. You choose which files to process.
 
 **End of day:**
 ```
@@ -166,7 +170,7 @@ Checks that all your docs are linked from a MOC, no broken links, everything pro
 | **AGENTS.md** | The AI's instruction manual. Tells Copilot who you are, how to behave, and where things go. Loaded automatically every session. |
 | **MOC** | Map of Content. An index file per project — lists every doc with a link and one-line description. The AI reads this instead of scanning folders. |
 | **`[[wikilinks]]`** | How notes connect to each other. Write `[[filename]]` to link. The AI follows these connections for context. |
-| **`ops/`** | Working memory. `tasks.md` and `reminders.md` — updated every session. |
+| **`ops/`** | Working memory. `tasks.md`, `reminders.md`, and `open-questions.md` — updated every session. |
 | **`inbox/`** | Drop zone for raw input. Files here get routed to the right place. |
 | **Prompt files** | Reusable AI commands saved in `.github/prompts/`. Invoke with `@workspace /name`. |
 
@@ -187,7 +191,8 @@ Checks that all your docs are linked from a MOC, no broken links, everything pro
 │       └── org-context.md          ← Your org, key contacts, strategy
 ├── ops/
 │   ├── tasks.md                    ← Active work items
-│   └── reminders.md                ← Time-bound follow-ups
+│   ├── reminders.md                ← Time-bound follow-ups
+│   └── open-questions.md           ← Unresolved questions across projects
 └── inbox/                          ← Drop raw files here
 ```
 
@@ -201,7 +206,7 @@ When you start working on something new:
 2. Create `docs/<project-name>/<project-name>-moc.md` (the project's index)
 3. Add a link in `docs/index.md` under Project Areas
 
-Meeting notes go to `docs/<project-name>/meeting-notes/`. PRDs go to `prds/`. Decisions to `decisions/`.
+Meeting notes go to `docs/<project-name>/meeting-notes/`. PRDs go to `prds/`.
 
 ---
 

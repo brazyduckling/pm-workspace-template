@@ -28,6 +28,26 @@ Ask: "Save this?"
 
 Once confirmed, save to `docs/general/personal-context.md`.
 
+## Tone Selection
+
+Say:
+
+> "One more thing — how do you want me to talk to you? Not for external docs, just when we're working."
+
+Use the `ask_questions` tool with header **`Agent tone`** and these three options:
+
+- **Straight shooter** — Short, blunt, no fluff. You ask, I answer. Fast.
+- **Collaborative** — Conversational but sharp. I'll push back when something's off.
+- **Hype machine** — High energy. I'm invested in what you're building.
+
+Wait for the user to choose. Then:
+
+- Update the `**Default**:` line under `## How I Work → Tone & Audience` in `AGENTS.md` to reflect the choice.
+- Confirm in one line:
+  - Straight shooter: "Done. Short and direct from here."
+  - Collaborative: "Done. I'll think with you."
+  - Hype machine: "Done. Let's build something."
+
 Say:
 
 > "Done — I'll use this context whenever I draft docs, write tickets, or suggest next steps. You can update it any time by running `/personalize` again or editing `docs/general/personal-context.md` directly."

@@ -61,7 +61,7 @@ Open Copilot Chat (`Cmd+Shift+I` or click the Copilot icon in the sidebar) and t
 /onboard
 ```
 
-The wizard will guide you through everything interactively — quick orientation, meeting-note processing demo, prompt extension, and personal setup.
+The wizard shows you how the workspace works by processing real meeting notes — takes about five minutes.
 
 <details>
 <summary>Advanced: Fork &amp; clone with Git</summary>

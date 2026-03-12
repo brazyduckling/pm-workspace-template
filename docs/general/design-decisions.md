@@ -109,31 +109,38 @@ The core problem it solves: AI assistants (ChatGPT, Copilot, Gemini) forget ever
 
 ---
 
-### 8. `/onboard` as an interactive walkthrough: orient first, then action
+### 8. `/onboard` as an interactive walkthrough: orient first, then demo, then rhythm
 
-**Decision:** The onboarding prompt starts with a short orientation to the folder model, then runs a live transcript workflow, then teaches prompt extension, then captures personal context and tone.
+**Decision:** The onboarding prompt opens with a short office metaphor and folder map, shows a pain point hook, then immediately runs a live transcript demo with zero confirmation steps, offers an optional session-start preview, then presents the daily rhythm commands. No tone selection, no custom prompt creation phase.
 
-**Why:** Pure action-first works well in live demos, but a boilerplate must also work for people onboarding alone without a call or recording. A 60-second map of the structure first (`docs/`, `ops/`, `inbox/`, MOCs, wikilinks, session rhythm) gives enough context for the transcript demo to make sense. Then the user sees immediate value, learns how to extend the system with custom prompts, and only then personalises it.
+**Why:** Keeping onboarding tight (under five minutes) maximises the chance a first-time user reaches the end and sees value. The confirm-before-write rule is explicitly suspended during onboarding — the agent processes everything first, then explains what happened. This "do, then explain" pattern creates immediate visible output, which is more convincing than a step-by-step walkthrough with confirmation gates.
 
 **Phases of the onboarding:**
-1. Orient to folder structure and information flow (directory table + MOC/wikilink explanation)
-2. Process a transcript (demo the core mechanic — decisions, actions, step-by-step filing, post-filing breakdown)
-3. Pick agent tone (stored in AGENTS.md, applies to all future sessions)
-4. Add/preview custom prompt creation (`.github/prompts/*.prompt.md`)
+1. Orient: trimmed office metaphor + folder table
+2. Pain point hook: why this system is different from chat-based AI
+3. Demo: process a transcript without confirmation — auto-pick project name, create all files, show punchy bullet recap
+4. Session-start preview: optional, shows what the morning view looks like
+5. Daily rhythm: four commands, one table
+
+**Onboarding is the exception to confirm-before-write.** During onboarding, the agent creates all files without asking first, then explains what it created in the recap. This is the only context where the normal confirm-before-write rule is suspended. All other prompts continue to follow the default rule.
+
+**What moved out:**
+- Tone selection moved to `/personalize` — keeps onboarding focused on seeing value; personalization is a natural second step
+- Custom prompt creation removed — advanced; the user can discover it later
+- Roadmap and testimonials sections removed — the demo is the proof
+- Privacy paragraph removed — already covered in README and design-decisions.md
 
 **Personal context is not in the wizard.** It's a separate `/personalize` prompt. See decision 7.
-
-**What was removed:** The PRD mini-demo step was cut from onboarding to keep setup concise. PRD routing is still documented and follows the same mechanics (`docs/<project>/prds/` + MOC indexing).
 
 **Transcript source:** The user can use the included example (`examples/example-meeting-transcript.md`) or paste their own. The example is a chaotic emergency standup — a broken driver tracking feature with a lat/long flip bug, disappearing UI, and a self-DDoS — realistic enough to produce real output (decisions, owners, open questions) without being tied to any real company.
 
 ---
 
-### 9. Agent tone selected during onboarding, stored in AGENTS.md
+### 9. Agent tone selected in `/personalize`, stored in AGENTS.md
 
-**Decision:** At the end of `/onboard`, the user picks how the agent talks to them. The choice is stored as the `Default` tone line in `AGENTS.md` and applies to all future sessions.
+**Decision:** Tone selection was moved from `/onboard` to `/personalize`. The user picks their tone as the final step after the five personal context questions. The choice is stored as the `Default` tone line in `AGENTS.md` and applies to all future sessions.
 
-**Why:** Tone is a real preference — some people want blunt and fast, others want collaborative and discursive. Asking at the end of onboarding ensures it's set before day-one use. Storing it in `AGENTS.md` means it applies automatically, no reminder required.
+**Why moved:** Onboarding is focused on showing value quickly — adding a tone question interrupts the momentum of the demo-recap-rhythm sequence. `/personalize` is naturally a customisation step, so tone fits there. Users who skip `/personalize` get the default tone (direct, professional) until they run it. Storing it in `AGENTS.md` means it applies automatically once set, no reminder required.
 
 **Three options offered:**
 - Straight shooter — short, direct, no filler
@@ -243,6 +250,8 @@ The agent always:
 5. If it's a new project: adds the project MOC to `docs/index.md`
 
 This confirm-before-write rule is hardcoded in AGENTS.md and enforced by all prompts.
+
+**Exception: `/onboard`.** During onboarding, the agent creates all files without asking first, then explains what it created in the recap. This is the only context where the rule is suspended — the goal is to show immediate value, not to walk through confirmations on a system the user hasn't seen yet. See decision 8.
 
 ### How context files stay updated
 

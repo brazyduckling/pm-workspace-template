@@ -132,12 +132,12 @@ Protocol:
 
 | Prompt | Purpose |
 |---|---|
-| `/onboard` | Interactive first-time onboarding |
+| `/onboard` | Interactive first-time onboarding — see the workspace work on real content |
 | `/session-start` | Daily orient flow |
 | `/session-end` | Daily persist/cleanup flow |
 | `/process` | Extract tasks, reminders, and open questions from inbox files, then route to permanent locations |
 | `/audit` | Structure and indexing audit |
-| `/personalize` | Set personal context — role, team, goals, working style |
+| `/personalize` | Set personal context — role, team, goals, working style — and pick agent tone |
 
 ## Design Philosophy
 

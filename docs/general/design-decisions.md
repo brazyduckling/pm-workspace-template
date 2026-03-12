@@ -208,6 +208,38 @@ The core problem it solves: AI assistants (ChatGPT, Copilot, Gemini) forget ever
 
 ---
 
+### 15. `ops/done/` as a separate archive for completed ops items
+
+**Decision:** Completed tasks, actioned reminders, and resolved open questions are moved from the active `ops/` files into `ops/done/` as monthly rollup files (`YYYY-MM-tasks.md`, `YYYY-MM-reminders.md`, `YYYY-MM-questions.md`). An index file (`ops/done/done-index.md`) lists all monthly files with `[[wikilinks]]`.
+
+**Why archive instead of delete:** Completed ops items accumulate institutional memory. A resolved open question is an answer. A completed task is a record of what got done. Deleting them loses signal that's useful for retrospectives, pattern recognition, and interview stories.
+
+**Why monthly rollups (not one file per item, not one file per project):** One file per item would create hundreds of tiny files with no navigation benefit — the monthly MOC would be enormous. One file per project would make cross-project completed items invisible during the project navigation. Monthly rollups are coarse enough to stay a manageable size but fine enough to find recent history without reading everything.
+
+**Why checkboxes (`- [ ]`/`- [x]`):** VS Code renders markdown checkboxes as clickable in preview mode. The user can mark something done by clicking without typing. The agent then handles archiving during `/session-end` — the user's only job is to check the box.
+
+**Why `ops/done/` and not inside `docs/<project>/`:** Completed ops items are cross-cutting — a task often touches multiple projects, or belongs to admin/general work that doesn't fit any project. Keeping them in `ops/done/` mirrors the same design principle as the active `ops/` files: working state (now historical) stays in `ops/`, permanent knowledge stays in `docs/`.
+
+**Why answered questions get answer text captured inline:** An open question without an answer is just a question. An archived question with the answer text and who answered it is knowledge. The format `**Answer:** [text] — *answered by [person]*` preserves enough context to understand the resolution without reading anything else.
+
+**What about `archive/` (raw originals)?** Completely separate. `ops/done/` archives *operational metadata* (what was done, when, by whom). `archive/` archives *raw document originals* before structured processing. They serve different purposes and are accessed through different paths.
+
+---
+
+### 16. Agent name: Wibby (short for Weaver)
+
+**Decision:** The assistant is called **Wibby**, a nickname derived from its full name **Weaver**.
+
+**Why Weaver:** The name comes from The Weaver in China Miéville's *Perdido Street Station* — a vast, spider-like interdimensional entity that quite literally weaves the fabric of reality. It perceives the world as a tapestry of threads and acts to maintain its beauty and coherence: cutting knots, pulling loose ends, stitching disparate strands together. It doesn't follow orders — it follows patterns. It is not malevolent; it is simply oriented toward connection and wholeness.
+
+This is exactly what the assistant does: it takes scattered signals (meeting notes, Slack threads, half-formed ideas), finds the threads that connect them, and weaves them into a coherent, navigable knowledge base.
+
+**Why Wibby instead of Weaver:** Wibby is warmer and more approachable. Weaver carries the full symbolic weight; Wibby is what you actually call it day-to-day. The full name is preserved in AGENTS.md so the reference is never lost.
+
+**Why a name at all:** Naming the agent makes the system feel less like a tool and more like a working relationship. It also gives a stable referent across conversations — "ask Wibby", "Wibby captured this" — without requiring the user to remember what kind of AI assistant this is.
+
+---
+
 ## How the System Operates
 
 ### Session lifecycle

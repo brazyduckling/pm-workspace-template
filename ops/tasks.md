@@ -1,10 +1,8 @@
 # Tasks
 
+<!-- Format: - [ ] **[Project]** Task description — _due: DD MMM YYYY_ · _owner: Name_ -->
+
 ## Active
 
-- [ ] Customise `AGENTS.md` with your role, company, and projects
-- [ ] Run `@workspace /onboard` to complete first-time setup
-
-## Completed
-
-_None yet._
+- [ ] **[Setup]** Customise `AGENTS.md` with your role, company, and projects
+- [ ] **[Setup]** Run `@workspace /onboard` to complete first-time setup

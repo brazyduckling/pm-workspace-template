@@ -28,6 +28,7 @@ topics: []
 - [[tasks]] — Active work items
 - [[reminders]] — Time-bound follow-ups
 - [[open-questions]] — Unresolved questions across projects
+- [[done-index]] — Archive of completed tasks, reminders, and questions
 
 ---
 

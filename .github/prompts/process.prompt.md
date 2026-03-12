@@ -31,9 +31,11 @@ Show the extraction grouped by type. Then ask:
 
 Wait for confirmation before writing to any ops/ file.
 
-- Tasks: append to `ops/tasks.md` under `## Active`
-- Reminders: append to `ops/reminders.md`
-- Open questions: append to `ops/open-questions.md`
+- Tasks: append to `ops/tasks.md` under `## Active` using format: `- [ ] **[Project]** Task description — _due: DD MMM YYYY_ · _owner: Name_`
+- Reminders: append to `ops/reminders.md` using format: `- [ ] **DD MMM YYYY** — **[Project]** Description`
+- Open questions: append to `ops/open-questions.md` using format: `- [ ] YYYY-MM-DD — **[Project]** Question text — *waiting on [person/context]*`
+
+The project name is already known from step 3 — apply it to every extracted item.
 
 If nothing was extracted for a category, skip it silently.
 

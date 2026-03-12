@@ -1,5 +1,5 @@
 ---
-mode: agent
+agent: agent
 description: "Tell me about you — role, team, goals, working style. Saves personal context so the agent's output is relevant to your actual job."
 ---
 

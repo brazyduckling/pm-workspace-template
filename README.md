@@ -176,7 +176,7 @@ Checks that all your docs are linked from a MOC, no broken links, everything pro
 
 | Concept | What it is |
 |---|---|
-| **AGENTS.md** | The AI's instruction manual. Tells Copilot who you are, how to behave, and where things go. Loaded automatically every session. |
+| **AGENTS.md** | The AI's instruction manual. Tells Copilot who you are, how to behave, and where things go. Loaded automatically every session. Also where the agent's name (**Wibby**, short for Weaver) is defined. |
 | **MOC** | Map of Content. An index file per project — lists every doc with a link and one-line description. The AI reads this instead of scanning folders. |
 | **`[[wikilinks]]`** | How notes connect to each other. Write `[[filename]]` to link. The AI follows these connections for context. |
 | **`ops/`** | Working memory. `tasks.md`, `reminders.md`, and `open-questions.md` — updated every session. |

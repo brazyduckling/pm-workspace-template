@@ -44,6 +44,12 @@ description: "Audit workspace structure — MOC coverage, orphans, dead links, a
 - Check `archive/archive-index.md` lists all project folders in `archive/`
 - Report missing archive files, missing archive MOCs, and unlisted project folders
 
+### 8) Ops Done Integrity
+- Verify `ops/done/done-index.md` exists
+- Verify each `[[wikilink]]` in `done-index.md` resolves to an actual file in `ops/done/`
+- Scan `ops/tasks.md`, `ops/reminders.md`, and `ops/open-questions.md` for any `[x]` items — these should have been archived during `/session-end`
+- Report: missing `done-index.md`, broken monthly file links, stale `[x]` items in active ops files
+
 ## Output
 
 Provide results grouped by category and include clear file paths for each issue.

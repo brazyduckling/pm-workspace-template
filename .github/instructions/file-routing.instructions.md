@@ -18,6 +18,7 @@ applyTo: "docs/**"
 | Open question | `ops/open-questions.md` (append) |
 | Raw unprocessed input | `inbox/` |
 | Raw original (after processing) | `archive/<project>/` |
+| Completed task / reminder / question | `ops/done/` (monthly rollup) |
 | MOC (index) | `docs/<folder>/<folder>-moc.md` |
 
 ## Folder Structure
@@ -37,7 +38,10 @@ docs/
 ops/
 ├── tasks.md
 ├── reminders.md
-└── open-questions.md
+├── open-questions.md
+└── done/
+    ├── done-index.md
+    └── YYYY-MM-tasks.md / YYYY-MM-reminders.md / YYYY-MM-questions.md
 
 inbox/
 

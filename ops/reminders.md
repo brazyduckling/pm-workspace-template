@@ -1,5 +1,5 @@
 # Reminders
 
-_No reminders yet._
+<!-- Format: - [ ] **DD MMM YYYY** — **[Project]** Description of what needs to happen -->
 
-<!-- Format: - **DD MMM YYYY** — Description of what needs to happen -->
+_No reminders yet._

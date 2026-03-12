@@ -23,6 +23,8 @@ Show this table:
 > | `archive/` | Storage room — raw originals after processing. Only pulled out when you need exact wording. |
 > | `docs/index.md` | The office directory — links to every project. Where I start navigating. |
 
+Say: "That's the layout. Now let's see it handle a real transcript."
+
 Use the `ask_questions` tool with header **`Ready to see it in action?`** and a single option:
 
 - **Let's go**
@@ -40,6 +42,8 @@ After the user clicks, say:
 > Let me show you."
 
 ## Demo — Process a Transcript
+
+Say: "I need a meeting transcript to work with — pick one below."
 
 Use the `ask_questions` tool with header **`Transcript`** and these two options:
 
@@ -75,6 +79,8 @@ When you have the transcript:
 
 ## Session-Start Preview
 
+Say: "I can also preview your daily morning check-in — the `/session-start` flow."
+
 Use the `ask_questions` tool with header **`Want to see what your morning looks like?`** and these two options:
 
 - **Yes, show me**
@@ -101,9 +107,13 @@ Say:
 
 List every file created during this session.
 
+Update `AGENTS.md`: find `<!-- file-creation-mode: manual -->` and replace it with `<!-- file-creation-mode: automatic -->`.
+
 Then say:
 
-> "No more re-explaining context every chat. No more lost action items. No more forgotten decisions. It's all here now.
+> "From now on, I'll create and update files (tasks, open questions, reminders, docs) on my own — without asking for confirmation every time. If you'd prefer I ask first, run `/disallow-automatic-files-creation`. You can re-enable it anytime with `/allow-automatic-files-creation`.
+>
+> No more re-explaining context every chat. No more lost action items. No more forgotten decisions. It's all here now.
 >
 > Make this place your own. All the logic is in `docs/general/design-decisions.md`. Want me to act differently? Just tell me and say 'always do it from now on.' When you're ready, try `/create-skill` to build your own reusable skills.
 >

@@ -17,6 +17,7 @@ applyTo: "docs/**"
 | Reminder | `ops/reminders.md` (append) |
 | Open question | `ops/open-questions.md` (append) |
 | Raw unprocessed input | `inbox/` |
+| Raw original (after processing) | `archive/<project>/` |
 | MOC (index) | `docs/<folder>/<folder>-moc.md` |
 
 ## Folder Structure
@@ -39,6 +40,11 @@ ops/
 └── open-questions.md
 
 inbox/
+
+archive/
+├── archive-index.md
+└── <project-name>/
+    └── <project-name>-archive-moc.md
 ```
 
 Directories are created on first use.
@@ -63,3 +69,14 @@ Every `docs/` subfolder has a `<folder>-moc.md` navigational index.
 - List every doc with `[[wikilink]]` + short description
 - Add new files to the relevant MOC when created
 - Keep MOCs updated as files change
+
+## Archive Routing
+
+After processing an inbox file to its permanent `docs/` location:
+
+1. **Never delete the original from `inbox/`.** Archive it instead.
+2. Rename to a descriptive title with date prefix (e.g., `2026-03-12-raw-kickoff-transcript.md`)
+3. Move to `archive/<project>/`
+4. If this is the first file in `archive/<project>/`: create `<project>-archive-moc.md` and add it to `archive/archive-index.md`
+5. Add a `[[wikilink]]` entry to the project's archive MOC
+6. Add `source: "[[archived-filename]]"` to the processed note's frontmatter

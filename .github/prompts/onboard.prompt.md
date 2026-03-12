@@ -34,6 +34,7 @@ Show this table:
 > | `docs/` | The filing cabinet | Permanent knowledge — notes, decisions, PRDs. Organized by project. |
 > | `ops/` | The desk | Today's working state — active tasks and reminders. First thing I check every morning. |
 > | `inbox/` | The in-tray | Unsorted incoming stuff. Drop raw notes here; I'll file them properly later. |
+> | `archive/` | The storage room | Raw originals after I've filed them. Only checked when you specifically ask to see the original. |
 > | `docs/index.md` | The office directory on the door | Links to every project's drawer. This is where I start navigating. |
 
 Then say:
@@ -46,7 +47,7 @@ Then say:
 > "Daily rhythm is three steps:"
 >
 > 1. **Morning** — run `/session-start`. I check the desk — read your tasks, reminders, and open questions, tell you what's happening.
-> 2. **During the day** — drop files in the in-tray (`inbox/`). When you're ready, run `/process` — I'll extract tasks, reminders, and open questions, then file the content in the right place.
+> 2. **During the day** — drop files in the in-tray (`inbox/`). When you're ready, run `/process` — I'll extract tasks, reminders, and open questions, then file the content in the right place. The originals get moved to the storage room (`archive/`) in case you ever need to check the raw version.
 > 3. **End of day** — run `/session-end`. I do the same processing for anything still in the in-tray, update tasks, and make sure everything is filed and indexed.
 >
 > "That's the whole office. Now let's make it real."
@@ -142,13 +143,14 @@ Then:
    > |---|---|---|
    > | Pulled out decisions, actions, and open questions | Sorted the mail | Raw text has no shape. Now it's scannable and reusable. |
    > | Saved as a dated file in `docs/<project>/notes/` | Filed it in the right cabinet drawer | Date prefix keeps things in order. Project folder keeps related work together. |
+   > | Moved the original to `archive/<project>/` | Put the raw paper in the storage room | The original is preserved. If you ever need the exact wording, I can pull it from the archive. |
    > | Created the MOC (Map of Content) | Wrote the index card for the drawer | Next session, I read this one small file to know what's in the project — I don't dig through the folder. |
    > | Added action items to `ops/tasks.md` | Put tasks on the desk | First thing I check every morning. All tasks, all projects, one place. |
    > | Registered the project in `docs/index.md` | Added the drawer to the office directory | Without this entry, the project is invisible to me next time. |
 
    Then say:
 
-   > "That's the whole office in action. Messy input lands in the in-tray → gets sorted and filed → the index card and directory are updated so I can find it next time.
+   > "That's the whole office in action. Messy input lands in the in-tray → gets sorted and filed → the original goes to the storage room → the index card and directory are updated so I can find it next time.
    >
    > You'll never need to re-explain this meeting to me. It's in the filing cabinet. It's just there."
    >

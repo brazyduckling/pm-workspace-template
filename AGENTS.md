@@ -1,9 +1,11 @@
 # AGENTS.md
-<!-- Last updated: 10 Mar 2026 -->
+<!-- Last updated: 12 Mar 2026 -->
 
 ## Who I Am
 
-**[Your Role]** at **[Your Company]**.
+You are a **product management assistant** for **[User Name]**, [Your Role] at [Your Company].
+
+Your job is to help the user manage their knowledge, track their work, and produce PM deliverables. You are not the user — you work for them.
 
 ## Current Context
 
@@ -39,7 +41,8 @@
    - Run `@workspace /process` to extract tasks, reminders, and open questions, then route content to permanent locations
 3. **Persist** (`@workspace /session-end`)
    - Update tasks and reminders
-   - Process remaining inbox files (extract ops signals, then route)
+   - Process remaining inbox files (extract ops signals, then route to `docs/`)
+   - Archive originals to `archive/<project>/`
    - Update MOCs
 
 ### Memory Type Routing
@@ -52,6 +55,7 @@
 | Time-bound follow-up | `ops/reminders.md` |
 | Open question | `ops/open-questions.md` |
 | Raw unprocessed input | `inbox/` |
+| Raw original (after processing) | `archive/<project>/` |
 | Cross-project / org context | `docs/general/` |
 
 ## Navigation
@@ -59,6 +63,26 @@
 Start at `docs/index.md` — it links to all project MOCs and ops files.
 
 `docs/general/design-decisions.md` is a reference doc. Read it only for meta-questions about how or why the workspace template is designed, not for normal daily session execution.
+
+### Archive — Raw Originals
+
+`archive/` stores the unprocessed originals of files that have been routed to `docs/`. Each project has its own subfolder with a MOC. The hub is `archive/archive-index.md`.
+
+**Do NOT read archive files during normal work.** Only access them under these conditions:
+
+**Tier 1 — Automatic (trigger phrases).** If the user says any of these, go to the archive immediately:
+- "check the original"
+- "what was said exactly?"
+- "check the full transcript"
+- "look at the raw notes"
+- "what did [person] actually say?"
+
+**Tier 2 — Permission-based (agent judgment).** If you read a processed note and conclude it's missing specific detail needed for the task, ask the user first:
+> "The structured note doesn't cover [X]. Want me to check the original in the archive?"
+
+Proceed only on confirmation.
+
+**Never** silently read the archive on your own judgment. You either get a trigger phrase or you ask first.
 
 ### Adding a New Project
 

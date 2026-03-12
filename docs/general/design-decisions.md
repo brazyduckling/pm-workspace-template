@@ -88,7 +88,7 @@ The core problem it solves: AI assistants (ChatGPT, Copilot, Gemini) forget ever
 
 **Why:** Immediate routing decisions made under pressure tend to be wrong. Dropping something in `inbox/` preserves it without committing to a structure. The `/session-end` prompt processes the inbox — by that point, the right project and folder are usually obvious. It also means the user can drop raw, unformatted text without the agent trying to structure it mid-conversation.
 
-**Rule:** Nothing stays in `inbox/` across sessions. Everything gets routed or deleted at session end.
+**Rule:** Nothing stays in `inbox/` across sessions. Everything gets routed to `docs/` and the original gets archived to `archive/<project>/` at session end.
 
 ---
 
@@ -182,6 +182,25 @@ The core problem it solves: AI assistants (ChatGPT, Copilot, Gemini) forget ever
 
 ---
 
+### 14. Archive pattern for raw originals
+
+**Decision:** After processing an inbox file to `docs/`, the original is renamed, moved to `archive/<project>/`, and linked via a `source` frontmatter field. The archive lives at the top level (outside `docs/`), has its own index (`archive/archive-index.md`) and per-project MOCs.
+
+**Why archive instead of delete:** Structured notes lose nuance — exact quotes, tone, tangents, unstructured observations. The original is the only complete record. Deleting it means that detail is gone forever. Archiving preserves it at zero ongoing cost.
+
+**Why outside `docs/`:** Physical isolation. The agent navigates `docs/` by default via MOCs. Placing archive outside `docs/` means it never appears during normal MOC traversal. The agent must consciously enter `archive/` — creating a hard boundary.
+
+**Why its own MOCs:** The archive needs to be directly queryable when the user asks for an original. Without MOCs, the agent would have to scan directory listings. Archive MOCs make originals findable through the same navigation pattern used everywhere else.
+
+**Access control — two-tier model:**
+- **Tier 1 (automatic):** Specific user phrases ("check the original", "what was said exactly?", etc.) unlock immediate archive access.
+- **Tier 2 (permission-based):** If the agent judges a processed note is missing needed detail, it asks the user before reading the archive.
+- **Never:** The agent silently reads the archive on its own.
+
+**Trade-off considered:** Keeping originals inside `docs/<project>/raw/` was rejected because it would make them visible during normal MOC navigation — defeating the purpose of controlled access.
+
+---
+
 ## How the System Operates
 
 ### Session lifecycle
@@ -198,7 +217,7 @@ Drop raw content (meeting notes, Slack threads, research) into `inbox/`. When re
 The agent:
 1. Updates `ops/tasks.md` (marks completed, adds new items from the session)
 2. Updates `ops/reminders.md` (adds new time-bound items, clears passed ones)
-3. Processes remaining `inbox/` files — for each file, extracts ops signals, then routes to its permanent location. Updates relevant MOC, deletes from inbox.
+3. Processes remaining `inbox/` files — for each file, extracts ops signals, then routes to its permanent location. Updates relevant MOC, archives the original to `archive/<project>/`.
 4. Verifies MOC coverage (anything created today should be indexed)
 
 ### How the agent navigates
@@ -211,6 +230,8 @@ When given a task, the agent:
 5. Acts
 
 It never scans directories or guesses filenames. If a document isn't linked from a MOC, it is effectively invisible to the agent.
+
+The agent does **not** read `archive/` during normal navigation. Archive access is gated: automatic only on specific user trigger phrases (e.g., "check the original"), or permission-based when the agent judges a processed note is missing detail.
 
 ### How new documents get created
 

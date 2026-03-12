@@ -54,7 +54,12 @@ Determine the content type and project, then route to its permanent location in 
    - Create the file in `docs/<project>/<type>/`
    - Add the `[[wikilink]]` entry to the project's MOC
    - If this is a new project: create the MOC and add it to `docs/index.md`
-   - Delete the file from `inbox/`
+   - Add `source: "[[archived-filename]]"` to the new file's frontmatter
+   - **Archive the original:**
+     1. Rename it to a descriptive title with date prefix (e.g., `2026-03-12-raw-kickoff-transcript.md`)
+     2. Move to `archive/<project>/` (create the folder if it doesn't exist)
+     3. If this is the first file in `archive/<project>/`: create `<project>-archive-moc.md` and add it to `archive/archive-index.md`
+     4. Add a `[[wikilink]]` entry to `archive/<project>/<project>-archive-moc.md`
 
 ## 4) Report
 

@@ -29,6 +29,7 @@ topics: [parent-moc-name]
 - `date`: format `DD MMM YYYY`
 - `status`: one of `draft`, `in-review`, `approved`, `archived`
 - `topics`: MOC membership list (plain text names)
+- `source` *(optional)*: `"[[archived-filename]]"` — links to the raw original in `archive/`. Added automatically when a file is processed from `inbox/`.
 
 ## Internal Links
 

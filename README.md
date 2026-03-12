@@ -147,7 +147,7 @@ Drop files into `inbox/`, then run:
 ```
 @workspace /process
 ```
-Copilot extracts tasks and open questions to `ops/`, then routes the content to its permanent location. You choose which files to process.
+Copilot extracts tasks and open questions to `ops/`, then routes the content to its permanent location. Originals are preserved in `archive/` for deeper reference. You choose which files to process.
 
 **End of day:**
 ```
@@ -172,6 +172,7 @@ Checks that all your docs are linked from a MOC, no broken links, everything pro
 | **`[[wikilinks]]`** | How notes connect to each other. Write `[[filename]]` to link. The AI follows these connections for context. |
 | **`ops/`** | Working memory. `tasks.md`, `reminders.md`, and `open-questions.md` — updated every session. |
 | **`inbox/`** | Drop zone for raw input. Files here get routed to the right place. |
+| **`archive/`** | Storage for raw originals after processing. Preserved for deeper reference — only accessed on request. |
 | **Prompt files** | Reusable AI commands saved in `.github/prompts/`. Invoke with `@workspace /name`. |
 
 ---
@@ -193,7 +194,8 @@ Checks that all your docs are linked from a MOC, no broken links, everything pro
 │   ├── tasks.md                    ← Active work items
 │   ├── reminders.md                ← Time-bound follow-ups
 │   └── open-questions.md           ← Unresolved questions across projects
-└── inbox/                          ← Drop raw files here
+├── inbox/                          ← Drop raw files here
+└── archive/                        ← Raw originals preserved after processing
 ```
 
 ---

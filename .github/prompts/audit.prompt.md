@@ -38,6 +38,12 @@ description: "Audit workspace structure — MOC coverage, orphans, dead links, a
   - topics
 - Report missing/empty fields
 
+### 7) Archive Integrity
+- Check docs in `docs/` with a `source` frontmatter field: verify the referenced archive file exists
+- Check every `archive/<project>/` folder has a `<project>-archive-moc.md`
+- Check `archive/archive-index.md` lists all project folders in `archive/`
+- Report missing archive files, missing archive MOCs, and unlisted project folders
+
 ## Output
 
 Provide results grouped by category and include clear file paths for each issue.

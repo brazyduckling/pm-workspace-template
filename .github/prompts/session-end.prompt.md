@@ -38,8 +38,13 @@ Show what was extracted. Confirm before writing to ops/ files.
 2. Structure the content: organise into clear sections, include a **Decisions** section if decisions were made, and a **Key Context** section for important background
 3. Route to the correct `docs/` location per routing rules
 4. Ensure required frontmatter
-5. Update relevant MOC with a `[[wikilink]]`
-6. Remove the file from `inbox/`
+5. Add `source: "[[archived-filename]]"` to the new file's frontmatter
+6. Update relevant MOC with a `[[wikilink]]`
+7. **Archive the original:**
+   1. Rename it to a descriptive title with date prefix (e.g., `2026-03-12-raw-kickoff-transcript.md`)
+   2. Move to `archive/<project>/` (create the folder if it doesn't exist)
+   3. If this is the first file in `archive/<project>/`: create `<project>-archive-moc.md` and add it to `archive/archive-index.md`
+   4. Add a `[[wikilink]]` entry to `archive/<project>/<project>-archive-moc.md`
 
 If routing is unclear, ask the user.
 

@@ -28,3 +28,11 @@ topics: []
 - [[tasks]] — Active work items
 - [[reminders]] — Time-bound follow-ups
 - [[open-questions]] — Unresolved questions across projects
+
+---
+
+## Archive
+
+> Raw originals from processed inbox files. **Do not browse unless explicitly asked.**
+
+- [[archive-index]] — Index of all archived raw originals

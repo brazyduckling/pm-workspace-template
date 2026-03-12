@@ -12,6 +12,10 @@ ChatGPT and Gemini forget everything between conversations. You end up re-explai
 
 This template gives Copilot a folder it can read as its memory. Every meeting note, decision, and task you save becomes part of its context — permanently.
 
+**What this fixes:** re-explaining context every chat, losing action items between meetings, forgotten decisions resurfacing as surprises, context scattered across five tools, generic AI output that ignores your actual projects.
+
+**Why not Gemini / Gems / NotebookLM?** Chat forgets. Gems have static context that goes stale. NotebookLM is read-only analysis in isolated notebooks. This tool grows automatically, tracks tasks, connects projects, and you own the files. [Full comparison ↓](#why-not-gemini--gems--notebookllm-1)
+
 ### A note on data privacy
 
 The markdown files live on your machine — no automatic cloud sync or third-party file storage. However, Copilot is a cloud service. When you use `@workspace`, VS Code sends relevant snippets from your local files to GitHub's servers as part of the inference request. The same rules apply as for any Copilot Chat message:
@@ -233,3 +237,16 @@ Check that `.github/copilot-instructions.md` exists and contains the pointer lin
 ## Optional: Obsidian
 
 Open this folder as an [Obsidian](https://obsidian.md/) vault to visualize your knowledge graph and navigate via `[[wikilinks]]`. Not required — everything works in VS Code alone.
+
+---
+
+## Why not Gemini / Gems / NotebookLM?
+
+| | Gemini Chat | Gemini Gems | NotebookLM | This tool |
+|---|---|---|---|---|
+| **Memory between sessions** | None — starts from zero | Static — you write it once, it goes stale | Per-notebook only — siloed | Dynamic — grows every time you work |
+| **Context updates** | Manual re-pasting | Manual rewriting | Re-upload files | Automatic — every processed note adds to it |
+| **Task tracking** | No | No | No | Yes — extracted from meetings, checked daily |
+| **Cross-project awareness** | No | No | No — each notebook is isolated | Yes — one workspace, all projects connected |
+| **Structured routing** | No | No | No | Yes — inbox → docs → archive, auto-indexed |
+| **You own the files** | No — cloud only | No — cloud only | No — cloud only | Yes — plain markdown on your machine |

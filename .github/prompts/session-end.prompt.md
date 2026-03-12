@@ -68,7 +68,13 @@ Then:
   **Answer:** Resolution text — *answered by [person]*
 ```
 
-Show the user a summary of what was archived before removing items from the active files. Confirm before writing.
+Check `AGENTS.md` for `file-creation-mode`:
+
+**If `manual`:** Show a summary of what will be archived and confirm before writing.
+
+**If `automatic`:** Archive and remove items directly, then report what was moved.
+
+> **Exception:** For resolved open questions, always ask for the answer/resolution text and who provided it before archiving, regardless of mode — that's missing data, not a confirmation gate.
 
 ## 4) Process Inbox
 
@@ -83,7 +89,11 @@ Read the content and extract:
 - **Reminders** — time-bound follow-ups → append to `ops/reminders.md`
 - **Open questions** — unresolved items needing follow-up → append to `ops/open-questions.md`
 
-Show what was extracted. Confirm before writing to ops/ files.
+Check `AGENTS.md` for `file-creation-mode`:
+
+**If `manual`:** Show what was extracted and confirm before writing to ops/ files.
+
+**If `automatic`:** Write directly to ops files and report what was added.
 
 ### b) Route — move to permanent location
 

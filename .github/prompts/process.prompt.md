@@ -25,11 +25,15 @@ Read the file content and extract operational signals:
 - **Reminders** — time-bound follow-ups (has a specific date or timeframe)
 - **Open questions** — unresolved items that need follow-up or a decision
 
-Show the extraction grouped by type. Then ask:
+Show the extraction grouped by type.
 
+Check `AGENTS.md` for `file-creation-mode`:
+
+**If `manual`:** Ask:
 > "Add these to ops? ([N] tasks → `ops/tasks.md`, [N] reminders → `ops/reminders.md`, [N] open questions → `ops/open-questions.md`)"
+Wait for confirmation before writing.
 
-Wait for confirmation before writing to any ops/ file.
+**If `automatic`:** Write directly to ops files without asking, then report what was added.
 
 - Tasks: append to `ops/tasks.md` under `## Active` using format: `- [ ] **[Project]** Task description — _due: DD MMM YYYY_ · _owner: Name_`
 - Reminders: append to `ops/reminders.md` using format: `- [ ] **DD MMM YYYY** — **[Project]** Description`
@@ -47,12 +51,15 @@ Determine the content type and project, then route to its permanent location in 
 2. **Determine content type** per the routing rules in `file-routing.instructions.md` (meeting notes, PRD, cross-project context, etc.).
 3. **Structure the content.** When routing raw or semi-structured content (transcripts, notes), organise it into clear sections. Include a **Decisions** section if any decisions were made, and a **Key Context** section for important background or constraints worth preserving.
 4. **Add required frontmatter** per `markdown-docs.instructions.md`.
-5. **Show the user:**
-   - Proposed file path
-   - Proposed structured content (in a code block)
-   - Proposed MOC entry (`[[wikilink]]` + one-line description)
-6. **Ask for confirmation** before writing.
-7. After confirmation:
+5. Check `AGENTS.md` for `file-creation-mode`:
+
+   **If `manual`:**
+   - Show the user: proposed file path, proposed structured content (in a code block), and proposed MOC entry (`[[wikilink]]` + one-line description)
+   - Ask for confirmation before writing
+
+   **If `automatic`:** Skip preview and confirmation — proceed directly to step 6.
+
+6. Write:
    - Create the file in `docs/<project>/<type>/`
    - Add the `[[wikilink]]` entry to the project's MOC
    - If this is a new project: create the MOC and add it to `docs/index.md`

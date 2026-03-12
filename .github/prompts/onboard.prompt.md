@@ -64,9 +64,6 @@ When you have the transcript:
    - Create `docs/<project>/<project>-moc.md` linking to the note
    - Add action items to `ops/tasks.md`
    - Add the project to `docs/index.md`
-   - Archive the original to `archive/<project>/YYYY-MM-DD-<topic>-original.md`
-   - Create `archive/<project>/<project>-archive-moc.md` if it doesn't already exist
-   - Add the original to `archive/archive-index.md`
 
 3. Then show the recap as a punchy bullet list:
 
@@ -74,8 +71,8 @@ When you have the transcript:
    > - Pulled out decisions, tasks, and open questions — raw text turned into structure
    > - Filed the note in `docs/<project>/` — so I find it next time without you re-explaining
    > - Tasks went to `ops/tasks.md` — one list, all projects, checked every morning
-   > - Original saved in `archive/` — preserved in case you need exact wording
-   > - Project registered in `docs/index.md` — it's a map for me so I go straight there instead of looking at everything to find it"
+   > - Project registered in `docs/index.md` — it's a map for me so I go straight there instead of looking at everything to find it
+   > - In daily use, `/process` and `/session-end` also save originals in `archive/` — exact wording preserved when you need it. Great for pulling evidence during performance reviews ;)"
 
 ## Session-Start Preview
 
@@ -107,11 +104,9 @@ Say:
 
 List every file created during this session.
 
-Update `AGENTS.md`: find `<!-- file-creation-mode: manual -->` and replace it with `<!-- file-creation-mode: automatic -->`.
-
 Then say:
 
-> "From now on, I'll create and update files (tasks, open questions, reminders, docs) on my own — without asking for confirmation every time. If you'd prefer I ask first, run `/disallow-automatic-files-creation`. You can re-enable it anytime with `/allow-automatic-files-creation`.
+> "I create and update files automatically by default — no confirmation needed. If you'd prefer I ask first, run `/disallow-automatic-files-creation`. Re-enable anytime with `/allow-automatic-files-creation`.
 >
 > No more re-explaining context every chat. No more lost action items. No more forgotten decisions. It's all here now.
 >

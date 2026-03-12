@@ -4,5 +4,4 @@
 
 ## Active
 
-- [ ] **[Setup]** Customise `AGENTS.md` with your role, company, and projects
-- [ ] **[Setup]** Run `@workspace /onboard` to complete first-time setup
+- [ ] **[Setup]** Run `/personalize` to set up your profile

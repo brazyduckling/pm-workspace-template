@@ -38,18 +38,6 @@ Download and install from [code.visualstudio.com](https://code.visualstudio.com/
 - Search for **GitHub Copilot**
 - Click Install
 
-### 4. Git
-Download from [git-scm.com](https://git-scm.com/downloads). Most Macs already have it — run `git --version` in Terminal to check.
-
-### 5. GitHub CLI (`gh`)
-Install from [cli.github.com](https://cli.github.com/) or with Homebrew:
-
-```bash
-brew install gh
-```
-
-`gh` gives a simpler auth flow for first-time setup.
-
 ### Verify it's all working
 1. Open VS Code
 2. Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows)
@@ -61,31 +49,57 @@ If the chat panel opens, you're ready.
 
 ## Quick Start (do this during the workshop)
 
-**Step 1 — Fork this repo**
-Click the **Fork** button at the top of this page. This creates your own copy to customize.
+**Step 1 — Download**
+Click the green **Code** button at the top of this page → **Download ZIP** → unzip the folder anywhere on your computer.
 
-**Step 2 — Authenticate GitHub CLI (one-time)**
+**Step 2 — Open in VS Code**
+Open VS Code → `File → Open Folder` → select the unzipped folder.
+
+**Step 3 — Run the setup wizard**
+Open Copilot Chat (`Cmd+Shift+I` or click the Copilot icon in the sidebar) and type:
+```
+/onboard
+```
+
+The wizard will guide you through everything interactively — quick orientation, meeting-note processing demo, prompt extension, and personal setup.
+
+<details>
+<summary>Advanced: Fork &amp; clone with Git</summary>
+
+If you want to version-control your notes with Git, fork the repo first and then clone it.
+
+**Fork the repo**
+Click the **Fork** button at the top of this page. This creates your own copy under your GitHub account.
+
+**Option A — GitHub CLI**
+
+Install from [cli.github.com](https://cli.github.com/) or with Homebrew:
+
+```bash
+brew install gh
+```
+
+Authenticate (one-time):
+
 ```bash
 gh auth login
 ```
 
-Follow the prompts and complete sign-in in your browser.
+Clone your fork:
 
-**Step 3 — Clone it to your computer (recommended)**
 ```bash
 gh repo clone <your-username>/pm-workspace-template
 ```
 
-If you prefer plain Git over `gh`, use HTTPS:
+**Option B — HTTPS**
+
+You'll need Git installed first: [git-scm.com/downloads](https://git-scm.com/downloads). Most Macs already have it — run `git --version` in Terminal to check.
 
 ```bash
 git clone https://github.com/<your-username>/pm-workspace-template.git
 ```
 
-<details>
-<summary>Optional: SSH clone and key setup</summary>
-
-If you prefer SSH, first create a key and add it to GitHub.
+**Option C — SSH**
 
 Generate a new key:
 
@@ -111,7 +125,7 @@ Copy the public key and add it in GitHub:
 pbcopy < ~/.ssh/id_ed25519.pub
 ```
 
-GitHub path: Settings -> SSH and GPG keys -> New SSH key.
+GitHub path: Settings → SSH and GPG keys → New SSH key.
 
 Then clone with SSH:
 
@@ -119,18 +133,9 @@ Then clone with SSH:
 git clone git@github.com:<your-username>/pm-workspace-template.git
 ```
 
+Open VS Code → `File → Open Folder` → select the cloned folder.
+
 </details>
-
-**Step 4 — Open in VS Code**
-Open VS Code → `File → Open Folder` → select the folder you just cloned.
-
-**Step 5 — Run the setup wizard**
-Open Copilot Chat (`Cmd+Shift+I` or click the Copilot icon in the sidebar) and type:
-```
-@workspace /onboard
-```
-
-The wizard will guide you through everything interactively — quick orientation, meeting-note processing demo, prompt extension, and personal setup.
 
 ---
 
@@ -138,26 +143,26 @@ The wizard will guide you through everything interactively — quick orientation
 
 **Every morning:**
 ```
-@workspace /session-start
+/session-start
 ```
 Copilot reads your tasks, reminders, and open questions and tells you what's on your plate.
 
 **During the day:**
 Drop files into `inbox/`, then run:
 ```
-@workspace /process
+/process
 ```
 Copilot extracts tasks and open questions to `ops/`, then routes the content to its permanent location. Originals are preserved in `archive/` for deeper reference. You choose which files to process.
 
 **End of day:**
 ```
-@workspace /session-end
+/session-end
 ```
 Copilot updates your tasks, processes your inbox, and makes sure everything is indexed.
 
 **Periodically:**
 ```
-@workspace /audit
+/audit
 ```
 Checks that all your docs are linked from a MOC, no broken links, everything properly structured.
 
@@ -173,7 +178,7 @@ Checks that all your docs are linked from a MOC, no broken links, everything pro
 | **`ops/`** | Working memory. `tasks.md`, `reminders.md`, and `open-questions.md` — updated every session. |
 | **`inbox/`** | Drop zone for raw input. Files here get routed to the right place. |
 | **`archive/`** | Storage for raw originals after processing. Preserved for deeper reference — only accessed on request. |
-| **Prompt files** | Reusable AI commands saved in `.github/prompts/`. Invoke with `@workspace /name`. |
+| **Prompt files** | Reusable AI commands saved in `.github/prompts/`. Invoke with `/name`. |
 
 ---
 
@@ -218,7 +223,7 @@ Meeting notes go to `docs/<project-name>/meeting-notes/`. PRDs go to `prds/`.
 Make sure you opened the *folder* in VS Code, not just individual files. `File → Open Folder` → select the repo root.
 
 **"/onboard doesn't work"**
-Make sure to type `@workspace` before the command: `@workspace /onboard`. The `@workspace` tells Copilot to read your files.
+Make sure you opened the *folder* in VS Code (`File → Open Folder`), not just an individual file. Copilot needs access to the full folder to run prompt commands.
 
 **"Copilot is ignoring AGENTS.md"**
 Check that `.github/copilot-instructions.md` exists and contains the pointer line. This file is what makes Copilot load AGENTS.md automatically.

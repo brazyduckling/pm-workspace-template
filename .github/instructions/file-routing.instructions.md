@@ -59,6 +59,9 @@ Directories are created on first use.
 |---|---|---|
 | Meeting notes | `YYYY-MM-DD-topic-slug.md` | `2026-03-04-kickoff-sync.md` |
 | PRDs, other | `descriptive-slug.md` | `payment-flow-prd.md` |
+| Archived originals | `YYYY-MM-DD-<type>-topic-slug.md` | `2026-03-12-transcript-kickoff-sync.md`, `2026-03-04-prd-payment-flow.md` |
+
+Common type labels for archived originals: `transcript`, `prd`, `spec`, `meeting-notes`, `research`, `brainstorm`. Use the most descriptive short label if none of these fit.
 
 ## New Project Creation
 
@@ -79,7 +82,7 @@ Every `docs/` subfolder has a `<folder>-moc.md` navigational index.
 After processing an inbox file to its permanent `docs/` location:
 
 1. **Never delete the original from `inbox/`.** Archive it instead.
-2. Rename to a descriptive title with date prefix (e.g., `2026-03-12-raw-kickoff-transcript.md`)
+2. Rename with a date prefix and a **type label** that identifies the kind of content: `YYYY-MM-DD-<type>-topic-slug.md`. Common type labels: `transcript`, `prd`, `spec`, `meeting-notes`, `research`, `brainstorm`. Use the most descriptive short label if none of the common ones fit. Example: `2026-03-12-transcript-kickoff-sync.md`.
 3. Move to `archive/<project>/`
 4. If this is the first file in `archive/<project>/`: create `<project>-archive-moc.md` and add it to `archive/archive-index.md`
 5. Add a `[[wikilink]]` entry to the project's archive MOC

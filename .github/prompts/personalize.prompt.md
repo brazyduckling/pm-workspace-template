@@ -15,15 +15,15 @@ Say:
 
 ## Step 1 — Profile
 
-Use the `ask_questions` tool with header **`About You`** and these four questions. Every question must have `allowFreeformInput: true` so the user can type their own answer.
+Use the `ask_questions` tool with **four questions in a single call**. Each question is a separate entry in the `questions` array with its own unique `header`. Every question must have `allowFreeformInput: true` so the user can type their own answer.
 
-1. **What should I call you?** — freeform only, no preset options.
-2. **What's your role?** — freeform only, no preset options.
-3. **How do you communicate?** — options:
+1. Header **`Name`**, question "What should I call you?" — freeform only, no preset options.
+2. Header **`Role`**, question "What's your role?" — freeform only, no preset options.
+3. Header **`Communication style`**, question "How do you communicate?" — options:
    - **Direct and concise** — bullet points over paragraphs
    - **Detailed and thorough** — I want the full picture every time
    - **Casual and conversational** — like talking to a teammate
-4. **How do you work?** — options:
+4. Header **`Work style`**, question "How do you work?" — options:
    - **Fast-paced, bias to action** — decide now, adjust later
    - **Methodical and structured** — plan first, then execute
    - **Async-first, deep work blocks** — minimize interruptions

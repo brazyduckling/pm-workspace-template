@@ -245,7 +245,7 @@ Open this folder as an [Obsidian](https://obsidian.md/) vault to visualize your 
 | | Gemini Chat | Gemini Gems | NotebookLM | This tool |
 |---|---|---|---|---|
 | **Memory between sessions** | None — starts from zero | Static — you write it once, it goes stale | Per-notebook only — siloed | Dynamic — grows every time you work |
-| **Context updates** | Manual re-pasting | Manual rewriting | Re-upload files | Automatic — every processed note adds to it |
+| **Context updates** | Manual re-pasting | Manual rewriting | Always intentional, no "serendipity" connections | Automatic — every processed note adds to it |
 | **Task tracking** | No | No | No | Yes — extracted from meetings, checked daily |
 | **Cross-project awareness** | No | No | No — each notebook is isolated | Yes — one workspace, all projects connected |
 | **Structured routing** | No | No | No | Yes — inbox → docs → archive, auto-indexed |
